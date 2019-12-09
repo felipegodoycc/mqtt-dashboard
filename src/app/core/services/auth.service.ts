@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   logout(){
-    localStorage.clear();
+    localStorage.removeItem('idToken');
     this.isUserLoggedIn.next(false);
   }
 
