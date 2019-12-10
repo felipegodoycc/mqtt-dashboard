@@ -1,6 +1,7 @@
 export class Medicion {
-    date:Date;
-    topic: String;
-    value: Number;
-    tipo: String;
+    _id: string;
+    date: Date;
+    topic: string;
+    value: number;
+    tipo: string;
 }
