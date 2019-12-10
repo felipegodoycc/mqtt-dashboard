@@ -5,17 +5,21 @@ import { HomeRoutingModule } from './home-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AngularMaterialModule } from 'src/app/core/angular-material.module';
 
+import { ChartsModule } from 'ng2-charts';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    LineChartComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ChartsModule
   ]
 })
 export class HomeModule { }
