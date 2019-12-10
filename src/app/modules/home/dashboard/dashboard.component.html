@@ -1,27 +1,18 @@
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
-  Seleccione un dia <input matInput (dateInput)="fechaSelected($event)"[matDatepicker]="picker" placeholder="Choose a date">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-      <mat-card *ngFor="let medicion of mediciones">
-        <mat-card-header>
-          <mat-card-title>
-            {{ medicion._id }}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <mat-list>
-            <mat-list-item>Tipo: {{medicion.tipo}}</mat-list-item>
-            <mat-list-item>Valor: {{medicion.value}}</mat-list-item>
-            <mat-list-item>Topic: {{medicion.topic}}</mat-list-item>
-          </mat-list>
-        </mat-card-content>
-      </mat-card>
+  <mat-form-field>
+    <input matInput (dateInput)="fechaSelected($event)"[matDatepicker]="picker" placeholder="Seleccione un dia">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>  
+  <mat-form-field>
+    <mat-select [(value)]="selected">
+      <mat-option *ngFor="let topic of topics" [value]="topic.value">
+        {{ topic.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-stroked-button (click)="getData()" [disabled]="!dateSelected">Buscar!</button>
+  <app-line-chart *ngIf="isData" [(data)]="graphData"></app-line-chart>
+  <h3 *ngIf="!isData"> No hay informacion disponible </h3>
 </div>
