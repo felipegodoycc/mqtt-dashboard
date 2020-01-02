@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { MedicionService } from 'src/app/core/services/medicion.service';
 import { MedicionDTO } from 'src/app/shared/dto/medicion.dto';
 import { Medicion } from 'src/app/shared/models/medicion.model';
@@ -30,7 +29,7 @@ export class DashboardComponent implements OnInit {
               }
 
   ngOnInit() {
-    
+
   }
 
   fechaSelected(date){
@@ -48,22 +47,14 @@ export class DashboardComponent implements OnInit {
       borderColor: 'black',
       backgroundColor: 'rgba(255,0,0,0.6)',
     }]
-    const titulo = mediciones[0].tipo;
-    const options = { 
+    const titulo = 'Valores';
+    const options = {
       responsive: true,
-      scales: {
-        yAxes: [{
-          ticks: {
-            min: 0,
-            max: 100
-          }
-        }]
-      }
     }
 
     for (let medicion of mediciones) {
       values.push(medicion.value)
-      labels.push(medicion.date)        
+      labels.push(medicion._id)
     }
 
     return new DataLineChart([{ data: values, label: titulo}],
@@ -91,7 +82,29 @@ export class DashboardComponent implements OnInit {
       } else {
         console.log("no llego data")
         this.isData = false;
-      }      
+      }
+    });
+  }
+
+  getData2(){
+    Swal.fire({
+      allowOutsideClick: false,
+      title: 'Espere porfavor',
+      icon: 'info'
+    })
+    Swal.showLoading();
+    this.medicionService.getMedicionesPorHora(this.desde, this.hasta, this.selected).subscribe( (res: MedicionDTO) => {
+      Swal.close();
+      console.log('res ', res)
+      if(res.items.length > 0){
+        console.log("llego data")
+        this.graphData = this.dataToGraph(res.items);
+        console.log(this.graphData);
+        this.isData = true;
+      } else {
+        console.log("no llego data")
+        this.isData = false;
+      }
     });
   }
 }

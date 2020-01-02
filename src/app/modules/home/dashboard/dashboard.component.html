@@ -4,7 +4,7 @@
     <input matInput (dateInput)="fechaSelected($event)"[matDatepicker]="picker" placeholder="Seleccione un dia">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>  
+  </mat-form-field>
   <mat-form-field>
     <mat-select [(value)]="selected">
       <mat-option *ngFor="let topic of topics" [value]="topic.value">
@@ -12,7 +12,7 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <button mat-stroked-button (click)="getData()" [disabled]="!dateSelected">Buscar!</button>
+  <button mat-stroked-button (click)="getData2()" [disabled]="!dateSelected">Buscar!</button>
   <app-line-chart *ngIf="isData" [(data)]="graphData"></app-line-chart>
   <h3 *ngIf="!isData"> No hay informacion disponible </h3>
 </div>
