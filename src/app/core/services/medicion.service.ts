@@ -9,8 +9,13 @@ export class MedicionService {
 
   constructor(private http: HttpClient) { }
 
-  getMediciones(desde: string, hasta: string, limit:number = -1, page:number = -1, topico:string) {
+  getMediciones(desde: string, hasta: string, limit: number = -1, page: number = -1, topico: string) {
     const url = `${this.apiUrl}/medicion/desde/${desde}/hasta/${hasta}?limit=${limit}&page=${page}&topic=${topico}`;
+    return this.http.get(url);
+  }
+
+  getMedicionesPorHora(desde: string, hasta: string, topico: string){
+    const url = `${this.apiUrl}/medicion/porHoras/desde/${desde}/hasta/${hasta}/?topic=${topico}`
     return this.http.get(url);
   }
 
