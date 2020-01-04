@@ -13,6 +13,8 @@
     </mat-select>
   </mat-form-field>
   <button mat-stroked-button (click)="getData()" [disabled]="!dateSelected">Buscar!</button>
+  <button mat-stroked-button (click)="page=page+1;getData()" [disabled]="!dateSelected">Siguiente</button>
+  <span>Page: {{ page }}</span>
   <app-line-chart *ngIf="isData" [(data)]="graphData"></app-line-chart>
   <h3 *ngIf="!isData"> No hay informacion disponible </h3>
 </div>

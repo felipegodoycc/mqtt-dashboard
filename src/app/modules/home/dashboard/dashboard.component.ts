@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
   dateSelected = false;
   desde: string;
   hasta: string;
+  page: number = 1;
 
   constructor(public medicionService: MedicionService) {
               }
@@ -45,7 +46,7 @@ export class DashboardComponent implements OnInit {
     let values = [];
     let labels = [];
     const colors = [{
-      borderColor: 'black',
+      borderColor: 'red',
       backgroundColor: 'rgba(255,0,0,0.6)',
     }]
     const titulo = mediciones[0].tipo;
@@ -80,7 +81,7 @@ export class DashboardComponent implements OnInit {
       icon: 'info'
     })
     Swal.showLoading();
-    this.medicionService.getMediciones(this.desde, this.hasta, 100, 1, this.selected).subscribe( (res: MedicionDTO) => {
+    this.medicionService.getMediciones(this.desde, this.hasta, 100, this.page, this.selected).subscribe( (res: MedicionDTO) => {
       Swal.close();
       console.log('res ', res)
       if(res.items.length > 0){
