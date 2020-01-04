@@ -1,0 +1,33 @@
+<div class="box">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Formulario por data</mat-card-title>
+        </mat-card-header>
+    
+        <form class="example-form" [formGroup]="forma" (submit)="onSubmit()" >
+            <mat-card-content>
+                <mat-form-field class="full-width">
+                    <input matInput type="text" 
+                                    placeholder="Nombre"
+                                    formControlName="nombre">
+                    <mat-error>Nombre es requerido!</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Apellido"  
+                                    formControlName="apellido">
+                    <mat-error>Apellido es requerido!</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Email"
+                                    formControlName="email">
+                    <mat-error>Email es requerido!</mat-error>
+                </mat-form-field>
+    
+            </mat-card-content>
+            <button mat-stroked-button class="btn-block"
+                                       [disabled]="!forma.valid">Test</button>
+        </form>
+    </mat-card>
+</div>
