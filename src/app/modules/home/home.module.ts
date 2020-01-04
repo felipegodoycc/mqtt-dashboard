@@ -7,19 +7,24 @@ import { AngularMaterialModule } from 'src/app/core/angular-material.module';
 
 import { ChartsModule } from 'ng2-charts';
 import { LineChartComponent } from './line-chart/line-chart.component';
+import { FormularioComponent } from './formulario/formulario.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     DashboardComponent,
-    LineChartComponent
+    LineChartComponent,
+    FormularioComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     AngularMaterialModule,
-    ChartsModule
+    ChartsModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class HomeModule { }
