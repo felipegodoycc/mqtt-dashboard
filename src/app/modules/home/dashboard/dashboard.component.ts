@@ -30,15 +30,9 @@ export class DashboardComponent implements OnInit {
 
   devices: Device[] = [];
 
-  constructor(public medicionService: MedicionService,
-              public ewelinkService: EwelinkService) {
-              }
+  constructor(public medicionService: MedicionService) {}
 
   ngOnInit() {
-    this.ewelinkService.getDevices().subscribe( (res:any) => {
-      this.devices = res.devices;
-      console.log(this.devices)
-    })
   }
 
   fechaSelected(date){
