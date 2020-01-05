@@ -14,6 +14,11 @@ export class EwelinkService {
     return this.http.get(url);
   }
 
+  getDevice(deviceID:string){
+    const url = `${this.apiUrl}/${deviceID}`;
+    return this.http.get(url);
+  }
+
   getState(deviceID:string){
     const url = `${this.apiUrl}/${deviceID}/state`;
     return this.http.get(url);
