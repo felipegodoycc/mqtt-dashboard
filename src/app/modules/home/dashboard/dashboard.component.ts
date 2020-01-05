@@ -41,8 +41,8 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  toogleDevice(id){
-    this.ewelinkService.toggleDevice(id).subscribe( res => {
+  toogleDevice(id,channel="1"){
+    this.ewelinkService.toggleDevice(id,channel).subscribe( res => {
       console.log(res)
     })
   }
