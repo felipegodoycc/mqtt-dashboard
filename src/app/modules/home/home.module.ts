@@ -9,6 +9,8 @@ import { ChartsModule } from 'ng2-charts';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SonoffDeviceComponent } from './sonoff-device/sonoff-device.component';
+import { DispositivosComponent } from './dispositivos/dispositivos.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     DashboardComponent,
     LineChartComponent,
-    FormularioComponent
+    FormularioComponent,
+    SonoffDeviceComponent,
+    DispositivosComponent
   ],
   imports: [
     CommonModule,
