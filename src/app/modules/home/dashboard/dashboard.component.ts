@@ -4,6 +4,8 @@ import { MedicionDTO } from 'src/app/shared/dto/medicion.dto';
 import { Medicion } from 'src/app/shared/models/medicion.model';
 import { DataLineChart } from '../line-chart/interface/data.interface';
 import Swal from 'sweetalert2';
+import { EwelinkService } from 'src/app/core/services/ewelink.service';
+import { Device } from 'src/app/shared/interface/device.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,11 +28,29 @@ export class DashboardComponent implements OnInit {
   hasta: string;
   page: number = 1;
 
-  constructor(public medicionService: MedicionService) {
+  devices: Device[] = [];
+
+  constructor(public medicionService: MedicionService,
+              public ewelinkService: EwelinkService) {
               }
 
   ngOnInit() {
+    this.ewelinkService.getDevices().subscribe( (res:any) => {
+      this.devices = res.devices;
+      console.log(this.devices)
+    })
+  }
 
+  toogleDevice(id){
+    this.ewelinkService.toggleDevice(id).subscribe( res => {
+      console.log(res)
+    })
+  }
+
+  getPowerUsage(id){
+    this.ewelinkService.getPowerUsage(id).subscribe( res => {
+      console.log(res)
+    })
   }
 
   fechaSelected(date){

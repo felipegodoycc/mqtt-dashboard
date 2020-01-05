@@ -15,4 +15,31 @@
   <button mat-stroked-button (click)="getData2()" [disabled]="!dateSelected">Buscar!</button>
   <app-line-chart *ngIf="isData" [(data)]="graphData"></app-line-chart>
   <h3 *ngIf="!isData"> No hay informacion disponible </h3>
+
+  <mat-card *ngFor="let device of devices">
+    <mat-card-title>{{ device.name }}</mat-card-title>
+    <mat-card-content>
+        <div *ngIf="device.uiid==2">
+          <ul>
+            <li *ngFor="let switch of device.params.switches; let i = index">Canal {{i+1}} : {{ switch.switch }}</li>
+          </ul>
+        </div>
+        <div *ngIf="device.uiid!=2">
+          <ul>
+            <li >Estado: {{ device.params.switch }}</li>
+          </ul>
+        </div>
+        <div *ngIf="device.uiid==32">
+          <ul>
+            <li>Voltaje: {{device.params.voltage}} Volts</li>
+            <li>Power: {{device.params.power}} Watts</li>
+            <li>Current: {{device.params.current}} Amperes</li>
+          </ul>
+        </div>
+        <button mat-stroked-button *ngIf="device.uiid===14 || device.uiid===32" (click)="toogleDevice(device.deviceid)" >TOGGLE</button>
+        <button mat-stroked-button *ngIf="device.uiid===2" (click)="toogleDevice(device.deviceid,'1')">TOOGLE 1</button>
+        <button mat-stroked-button *ngIf="device.uiid===2" (click)="toogleDevice(device.deviceid,'2')">TOGGLE 2</button>
+        <button mat-stroked-button *ngIf="device.uiid===32" (click)="getPowerUsage(device.deviceid)">POWER</button>
+    </mat-card-content>
+  </mat-card>
 </div>
