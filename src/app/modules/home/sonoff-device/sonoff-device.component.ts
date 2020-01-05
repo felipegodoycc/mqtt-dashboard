@@ -11,6 +11,8 @@ import { Subscription, interval } from 'rxjs';
 export class SonoffDeviceComponent implements OnInit {
   @Input() device: Device;
   private updateSubscription: Subscription;
+  status:string;
+  loading:boolean = false;
   
   constructor(private ewelinkService: EwelinkService) { }
 
@@ -18,6 +20,7 @@ export class SonoffDeviceComponent implements OnInit {
     this.updateSubscription = interval(10000).subscribe( val => {
         this.updateDevice();
       })
+    this.status = this.device.params.switch || "off"
   }
 
   updateDevice(){
@@ -27,9 +30,10 @@ export class SonoffDeviceComponent implements OnInit {
   }
 
   toogleDevice(id,channel="1"){
-    this.ewelinkService.toggleDevice(id,channel).subscribe( res => {
-      console.log(res);
-      this.updateDevice();
+    this.loading = true;
+    this.ewelinkService.toggleDevice(id,channel).subscribe( (res:any) => {
+      this.status = res.status.state
+      this.loading = false;
     })
 
   }
