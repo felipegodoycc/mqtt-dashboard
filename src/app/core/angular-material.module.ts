@@ -21,7 +21,9 @@ import {
    MatPaginatorModule,
    MatCardModule,
    MatCheckboxModule,
-   MatMenuModule
+   MatMenuModule,
+   MatSpinner,
+   MatProgressSpinnerModule
    
 } from '@angular/material';
 
@@ -47,7 +49,8 @@ import {
       MatPaginatorModule,
       MatCardModule,
       MatCheckboxModule,
-      MatMenuModule
+      MatMenuModule,
+      MatProgressSpinnerModule
    ],
    exports: [
       MatButtonModule,
@@ -68,7 +71,8 @@ import {
       MatPaginatorModule,
       MatCardModule,
       MatCheckboxModule,
-      MatMenuModule
+      MatMenuModule,
+      MatProgressSpinnerModule
    ],
    providers: [
       MatDatepickerModule,
