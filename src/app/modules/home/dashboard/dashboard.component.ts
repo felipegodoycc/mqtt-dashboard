@@ -41,18 +41,6 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  toogleDevice(id,channel="1"){
-    this.ewelinkService.toggleDevice(id,channel).subscribe( res => {
-      console.log(res)
-    })
-  }
-
-  getPowerUsage(id){
-    this.ewelinkService.getPowerUsage(id).subscribe( res => {
-      console.log(res)
-    })
-  }
-
   fechaSelected(date){
     this.desde = new Date(date.value).toISOString();
     let h = new Date(date.value);
