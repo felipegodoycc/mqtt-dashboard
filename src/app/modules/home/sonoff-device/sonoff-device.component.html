@@ -4,23 +4,23 @@
         <div style="width: 100%;" >
             <mat-spinner diameter="20" style="margin:0 auto;" *ngIf="loading"></mat-spinner>
         </div>
-        <div *ngIf="device.uiid==2">
-          <mat-list>
+        <mat-list>
+          <mat-list-item>Online:
+            <mat-icon *ngIf="device.online">check_box</mat-icon>
+            <mat-icon *ngIf="!device.online">check_box_outline_blank</mat-icon>
+          </mat-list-item>
+          <div *ngIf="device.uiid==2">
             <mat-list-item *ngFor="let switch of device.params.switches; let i = index">Canal {{i+1}} : {{ switch.switch | uppercase }}</mat-list-item>
-          </mat-list>
-        </div>
-        <div *ngIf="device.uiid!=2">
-          <mat-list>
+          </div>
+          <div *ngIf="device.uiid!=2">
             <mat-list-item >Estado: {{ status| uppercase }}</mat-list-item>
-          </mat-list>
-        </div>
-        <div *ngIf="device.uiid==32">
-          <mat-list>
+          </div>
+          <div *ngIf="device.uiid==32">
             <mat-list-item>Voltaje: {{device.params.voltage}} V</mat-list-item>
             <mat-list-item>Power: {{device.params.power}} W</mat-list-item>
             <mat-list-item>Corriente: {{device.params.current}} A</mat-list-item>
-          </mat-list>
-        </div>
+          </div>
+        </mat-list>
         <button mat-stroked-button *ngIf="device.uiid===14 || device.uiid===32" [disabled]="loading" (click)="toogleDevice(device.deviceid)" >TOGGLE</button>
         <div *ngIf="device.uiid===2">
             <button mat-stroked-button [disabled]="loading" (click)="toogleDevice(device.deviceid,'1')">TOOGLE 1</button>

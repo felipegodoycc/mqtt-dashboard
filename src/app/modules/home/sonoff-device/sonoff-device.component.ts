@@ -10,38 +10,41 @@ import { Subscription, interval } from 'rxjs';
 })
 export class SonoffDeviceComponent implements OnInit {
   @Input() device: Device;
+
   private updateSubscription: Subscription;
-  status:string;
-  loading:boolean = false;
-  
+  status: string;
+  loading = false;
+
   constructor(private ewelinkService: EwelinkService) { }
 
   ngOnInit() {
     this.updateSubscription = interval(10000).subscribe( val => {
         this.updateDevice();
-      })
-    this.status = this.device.params.switch || "off"
+      });
+    this.status = this.device.params.switch || 'off';
   }
 
   updateDevice(){
-    this.ewelinkService.getDevice(this.device.deviceid).subscribe( (res:any) => {
+    this.loading = true;
+    this.ewelinkService.getDevice(this.device.deviceid).subscribe( (res: any) => {
       this.device = res.device;
-    })
+      this.loading = false;
+    });
   }
 
-  toogleDevice(id,channel="1"){
+  toogleDevice(id,channel='1'){
     this.loading = true;
-    this.ewelinkService.toggleDevice(id,channel).subscribe( (res:any) => {
-      this.status = res.status.state
+    this.ewelinkService.toggleDevice(id, channel).subscribe( (res: any) => {
+      this.status = res.status.state;
       this.loading = false;
-    })
+    });
 
   }
 
   getPowerUsage(id){
     this.ewelinkService.getPowerUsage(id).subscribe( res => {
-      console.log(res)
-    })
+      console.log(res);
+    });
   }
 
 }
