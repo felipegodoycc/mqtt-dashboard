@@ -49,17 +49,17 @@ export class AuthService {
                     .pipe( map(res => {
                       this.guardarToken(res['idToken']);
                       return res;
-                    }));    
+                    }));
   }
 
   private guardarToken(token:string){
     this.token = token;
-    localStorage.setItem('token', token);
+    localStorage.setItem('idToken', token);
     this.isUserLoggedIn.next(true);
   }
 
   leerToken(){
-    let t = localStorage.getItem('token');
+    let t = localStorage.getItem('idToken');
     if(t){
       this.token = t;
       if(this.isLogged) this.isUserLoggedIn.next(true);
