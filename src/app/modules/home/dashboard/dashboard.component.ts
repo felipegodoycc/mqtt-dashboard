@@ -30,14 +30,18 @@ export class DashboardComponent implements OnInit {
 
   devices: Device[] = [];
 
-  constructor(public medicionService: MedicionService) {}
+  constructor(public medicionService: MedicionService) {
+    this.fechaSelected(new Date(Date.now()));
+    this.getData2();
+  }
 
   ngOnInit() {
   }
 
-  fechaSelected(date){
-    this.desde = new Date(date.value).toISOString();
-    let h = new Date(date.value);
+  fechaSelected(date:Date){
+    date.setHours(0,0,0);
+    this.desde = new Date(date).toISOString();
+    let h = new Date(date);
     h.setHours(23,59,59);
     this.hasta = h.toISOString();
     this.dateSelected = true;

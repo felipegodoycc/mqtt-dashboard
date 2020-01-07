@@ -1,7 +1,7 @@
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
   <mat-form-field>
-    <input matInput (dateInput)="fechaSelected($event)"[matDatepicker]="picker" placeholder="Seleccione un dia">
+    <input matInput (dateInput)="fechaSelected($event.value)" [matDatepicker]="picker" placeholder="Seleccione un dia">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
