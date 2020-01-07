@@ -1,3 +1,6 @@
 <div class="container">
+    <div style="width: 100%; height: 50vh;" *ngIf="loading">
+      <mat-spinner style="margin:10% auto;" ></mat-spinner>
+    </div>
     <app-sonoff-device *ngFor="let device of devices" [device]="device"></app-sonoff-device>
 </div>
