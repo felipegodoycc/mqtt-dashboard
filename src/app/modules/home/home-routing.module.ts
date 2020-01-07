@@ -10,9 +10,9 @@ const routes: Routes = [
         path: '',
         canActivate: [AuthGuard],
         children: [
-            { path:'dashboard', component: DashboardComponent },
-            { path:'formulario', component: FormularioComponent},
-            { path:'dispositivos', component: DispositivosComponent},
+            { path: 'dashboard', component: DashboardComponent },
+            { path: 'formulario', component: FormularioComponent},
+            { path: 'dispositivos', component: DispositivosComponent},
             { path: '', pathMatch: 'full', redirectTo: 'dashboard'}
         ]
     },
