@@ -4,6 +4,7 @@ import { UsuarioModel } from 'src/app/shared/models/usuario.model';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,12 @@ export class AuthService {
   private apiKey = "AIzaSyCR28OzSE-2kmMYF80y45dJU5lAAn5Y0gs";
 
   private token:string;
-
+  private helperJWT;
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
     this.leerToken();
+    this.helperJWT = new JwtHelperService();
   }
 
   logout(){
@@ -71,7 +73,7 @@ export class AuthService {
   }
 
   isLogged(): boolean{
-    return this.token.length > 20;
+    return !this.helperJWT.isTokenExpired(this.token);
   }
 
 }
