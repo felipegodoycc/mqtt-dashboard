@@ -1,8 +1,8 @@
 <mat-card>
-    <div style="width: 100%; height: 50vh;" *ngIf="loading">
+    <div style="width: 100%;" *ngIf="loading">
         <mat-spinner style="margin:10% auto;" ></mat-spinner>
     </div>
-    <div *ngIf="data">
+    <div *ngIf="data && !loading">
         <mat-card-title>{{ data.topic }}</mat-card-title>
         <mat-card-content>
             <mat-list *ngIf="data.tipo==='temp'">

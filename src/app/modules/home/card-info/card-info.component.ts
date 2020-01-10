@@ -17,7 +17,6 @@ export class CardInfoComponent implements OnInit {
   constructor(private medicionService: MedicionService) {}
 
   ngOnInit() {
-    console.log('topico', this.topic);
     this.loadData();
     this.refresh.subscribe( res => {
       if (res) { this.loadData(); }
@@ -25,6 +24,7 @@ export class CardInfoComponent implements OnInit {
   }
 
   loadData() {
+    this.loading = true;
     this.medicionService.getUltimoRegistro(this.topic).subscribe( (res: any) => {
       this.data = res;
       this.loading = false;
