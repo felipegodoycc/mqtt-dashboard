@@ -2,3 +2,11 @@
   margin: 20px;
 }
 
+.head-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-form-field {
+  margin: 0 10px;
+}

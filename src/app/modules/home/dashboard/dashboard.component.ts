@@ -6,6 +6,7 @@ import { DataLineChart } from '../line-chart/interface/data.interface';
 import Swal from 'sweetalert2';
 import { EwelinkService } from 'src/app/core/services/ewelink.service';
 import { Device } from 'src/app/shared/interface/device.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,8 +17,9 @@ export class DashboardComponent implements OnInit {
   mediciones: Medicion[] = [];
   graphData: DataLineChart;
   isData = false;
-
+  refreshCards: BehaviorSubject<boolean> = new BehaviorSubject(false);
   dateSelected = false;
+  loading = false;
   desde: string;
   hasta: string;
 
@@ -73,14 +75,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getData(){
-    Swal.fire({
-      allowOutsideClick: false,
-      title: 'Espere porfavor',
-      icon: 'info'
-    });
-    Swal.showLoading();
+    this.loading = true;
     this.medicionService.getMedicionesPorHora(this.desde, this.hasta, this.selected).subscribe( (res: MedicionDTO) => {
-      Swal.close();
       console.log('res ', res);
       if (res.items.length > 0){
         console.log('llego data');
@@ -91,6 +87,12 @@ export class DashboardComponent implements OnInit {
         console.log('no llego data');
         this.isData = false;
       }
+      this.loading = false;
     });
+  }
+
+  updateCards(){
+    this.refreshCards.next(true);
+    this.refreshCards.next(false);
   }
 }
