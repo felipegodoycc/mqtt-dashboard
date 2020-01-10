@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MedicionService } from 'src/app/core/services/medicion.service';
 import { Medicion } from 'src/app/shared/models/medicion.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-card-info',
@@ -9,17 +10,25 @@ import { Medicion } from 'src/app/shared/models/medicion.model';
 })
 export class CardInfoComponent implements OnInit {
   @Input() topic;
+  @Input() refresh: Observable<boolean>;
   loading = true;
-  data:Medicion;
+  data: Medicion;
 
   constructor(private medicionService: MedicionService) {}
 
   ngOnInit() {
     console.log('topico', this.topic);
-    this.medicionService.getUltimoRegistro(this.topic).subscribe( (res:any) => {
-      this.data = res
+    this.loadData();
+    this.refresh.subscribe( res => {
+      if (res) { this.loadData(); }
+    });
+  }
+
+  loadData() {
+    this.medicionService.getUltimoRegistro(this.topic).subscribe( (res: any) => {
+      this.data = res;
       this.loading = false;
-    })
+    });
   }
 
 }

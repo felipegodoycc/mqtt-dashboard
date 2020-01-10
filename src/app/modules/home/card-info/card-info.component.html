@@ -3,13 +3,21 @@
         <mat-spinner style="margin:10% auto;" ></mat-spinner>
     </div>
     <div *ngIf="data">
-        <mat-card-title>{{ data.tipo }}</mat-card-title>
+        <mat-card-title>{{ data.topic }}</mat-card-title>
         <mat-card-content>
-            <mat-list>
-                <mat-list-item>{{ data.topic }}</mat-list-item>
-                <mat-list-item>{{ data.value }}</mat-list-item>
-                <mat-list-item>{{ data.tipo }}</mat-list-item>
+            <mat-list *ngIf="data.tipo==='temp'">
+                <mat-list-item >
+                  {{ data.value }} C°
+                  <mat-icon *ngIf="data.value < 20">wb_cloudy</mat-icon>
+                  <mat-icon *ngIf="data.value > 20">wb_sunny</mat-icon>
+              </mat-list-item>
+              <mat-list-item class="detalle"> Ult. vez {{data.date | date:'medium' }}</mat-list-item>
+            </mat-list>
+            <mat-list *ngIf="data.tipo==='hum'">
+              <mat-list-item >{{ data.value }} % <mat-icon>opacity</mat-icon></mat-list-item>
+
+              <mat-list-item left class="detalle"> Ult. vez {{data.date | date:'medium' }}</mat-list-item>
             </mat-list>
         </mat-card-content>
-    </div>    
+    </div>
 </mat-card>
