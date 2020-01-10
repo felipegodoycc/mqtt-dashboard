@@ -24,10 +24,10 @@ export class DashboardComponent implements OnInit {
   hasta: string;
 
   topics = [
-    { value: 'casa/pieza/temp', viewValue: 'casa/pieza/temp'},
-    { value: 'casa/pieza/hum', viewValue: 'casa/pieza/hum'},
-    { value: 'casa/patio/temp', viewValue: 'casa/patio/temp'},
-    { value: 'casa/patio/hum', viewValue: 'casa/patio/hum'},
+    { value: 'casa/pieza/temp', viewValue: 'Temperatura pieza'},
+    { value: 'casa/pieza/hum', viewValue: 'Humedad pieza'},
+    { value: 'casa/patio/temp', viewValue: 'Temperatura pieza'},
+    { value: 'casa/patio/hum', viewValue: 'Humedad pieza'},
   ];
 
   selected = this.topics[2].value;
@@ -44,25 +44,25 @@ export class DashboardComponent implements OnInit {
   fechaSelected(date: Date) {
     date.setHours(0, 0, 0);
     this.desde = new Date(date).toISOString();
-    let h = new Date(date);
+    const h = new Date(date);
     h.setHours(23, 59, 59);
     this.hasta = h.toISOString();
     this.dateSelected = true;
   }
 
-  dataToGraph(mediciones: Medicion[]): DataLineChart {
-    let values = [];
-    let labels = [];
+  dataToGraph(mediciones: Medicion[], topic): DataLineChart {
+    const values = [];
+    const labels = [];
     const colors = [{
       borderColor: 'red',
       backgroundColor: 'rgba(255,0,0,0.6)',
     }];
-    const titulo = 'Valores';
+    const titulo = topic;
     const options = {
       responsive: true,
     };
 
-    for (let medicion of mediciones) {
+    for (const medicion of mediciones) {
       values.push(medicion.value);
       labels.push(medicion._id);
     }
@@ -74,13 +74,13 @@ export class DashboardComponent implements OnInit {
                               options);
   }
 
-  getData(){
+  getData() {
     this.loading = true;
     this.medicionService.getMedicionesPorHora(this.desde, this.hasta, this.selected).subscribe( (res: MedicionDTO) => {
       console.log('res ', res);
-      if (res.items.length > 0){
+      if (res.items.length > 0) {
         console.log('llego data');
-        this.graphData = this.dataToGraph(res.items);
+        this.graphData = this.dataToGraph(res.items, this.selected);
         console.log(this.graphData);
         this.isData = true;
       } else {
@@ -91,7 +91,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  updateCards(){
+  updateCards() {
     this.refreshCards.next(true);
     this.refreshCards.next(false);
   }
