@@ -16,3 +16,6 @@
   <app-line-chart *ngIf="isData" [(data)]="graphData"></app-line-chart>
   <h3 *ngIf="!isData"> No hay informacion disponible </h3>
 </div>
+<div class="container">
+  <app-card-info *ngFor="let a of topics" [(topic)]="a.value"></app-card-info>
+</div>

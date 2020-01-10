@@ -11,6 +11,7 @@ import { FormularioComponent } from './formulario/formulario.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SonoffDeviceComponent } from './sonoff-device/sonoff-device.component';
 import { DispositivosComponent } from './dispositivos/dispositivos.component';
+import { CardInfoComponent } from './card-info/card-info.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { DispositivosComponent } from './dispositivos/dispositivos.component';
     LineChartComponent,
     FormularioComponent,
     SonoffDeviceComponent,
-    DispositivosComponent
+    DispositivosComponent,
+    CardInfoComponent
   ],
   imports: [
     CommonModule,
