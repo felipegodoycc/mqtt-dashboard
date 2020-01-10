@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Medicion } from 'src/app/shared/models/medicion.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +20,11 @@ export class MedicionService {
   getMedicionesPorHora(desde: string, hasta: string, topico: string){
     const url = `${this.apiUrl}/medicion/porHoras/desde/${desde}/hasta/${hasta}/?topic=${topico}`
     return this.http.get(url);
+  }
+
+  getUltimoRegistro(topico: string): Observable<Medicion>{
+    const url = `${this.apiUrl}/medicion/last/?topic=${topico}`;
+    return this.http.get(url).pipe( map( (res:any) => res.registro));
   }
 
 
