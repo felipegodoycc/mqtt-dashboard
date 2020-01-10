@@ -7,8 +7,9 @@ import { AuthModule } from './modules/auth/auth.module';
 import { AngularMaterialModule } from './core/angular-material.module';
 import { CoreComponent } from './core/components/core.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { MyInterceptor } from './core/services/interceptor';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,13 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
