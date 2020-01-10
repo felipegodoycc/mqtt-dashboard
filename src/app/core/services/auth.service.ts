@@ -74,7 +74,9 @@ export class AuthService {
   }
 
   isLogged(): boolean {
-    return !this.helperJWT.isTokenExpired(this.token);
+    const isExpired = this.helperJWT.isTokenExpired(this.token);
+    if (isExpired) { localStorage.removeItem('idToken'); }
+    return !isExpired;
   }
 
 }
