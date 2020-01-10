@@ -5,37 +5,36 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class EwelinkService {
-  private apiUrl = "http://ifcomputing.com:3035/api/v1/ewelink/device"
-  constructor(private http: HttpClient) {    
-  }
+  private apiUrl = 'http://ifcomputing.com:3035/api/v1/ewelink/device';
+  constructor(private http: HttpClient) {}
 
-  getDevices(){
+  getDevices() {
     const url = `${this.apiUrl}`;
     return this.http.get(url);
   }
 
-  getDevice(deviceID:string){
+  getDevice(deviceID: string) {
     const url = `${this.apiUrl}/${deviceID}`;
     return this.http.get(url);
   }
 
-  getState(deviceID:string){
+  getState(deviceID: string) {
     const url = `${this.apiUrl}/${deviceID}/state`;
     return this.http.get(url);
   }
 
-  getPowerUsage(deviceID:string){
+  getPowerUsage(deviceID: string) {
     const url = `${this.apiUrl}/${deviceID}/power-usage`;
     return this.http.get(url);
   }
 
-  toggleDevice(deviceID:string,channel:string="1"){
+  toggleDevice(deviceID: string, channel: string= '1') {
     const url = `${this.apiUrl}/${deviceID}/toggle/channel/${channel}`;
     return this.http.get(url);
   }
 
-  setStatus(deviceID:string, status:string, channel:string = '1'){
+  setStatus(deviceID: string, status: string, channel: string = '1') {
     const url = `${this.apiUrl}/${deviceID}/set/${status}`;
-    return this.http.put(url,{ channel });
+    return this.http.put(url, { channel });
   }
 }

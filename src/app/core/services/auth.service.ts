@@ -11,60 +11,61 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
 
-  private authUrl = "https://identitytoolkit.googleapis.com/v1";
-  private apiKey = "AIzaSyCR28OzSE-2kmMYF80y45dJU5lAAn5Y0gs";
+  private authUrl = 'https://identitytoolkit.googleapis.com/v1';
+  private apiKey = 'AIzaSyCR28OzSE-2kmMYF80y45dJU5lAAn5Y0gs';
 
-  private token:string;
+  private token: string;
   private helperJWT;
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
     this.leerToken();
+    if (!this.isLogged) { this.isUserLoggedIn.next(false); }
     this.helperJWT = new JwtHelperService();
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('idToken');
     this.isUserLoggedIn.next(false);
   }
 
-  login(usuario:UsuarioModel){
+  login(usuario: UsuarioModel) {
     const authData = {
       ...usuario,
       returnSecureToken: true
-    }
+    };
 
     return this.http.post(`${this.authUrl}/accounts:signInWithPassword?key=${this.apiKey}`, authData)
-                    .pipe( map(res => {
-                      this.guardarToken(res['idToken']);
+                    .pipe( map( (res: any) => {
+                      this.guardarToken(res.idToken);
                       return res;
                     }));
   }
 
-  registrar(usuario: UsuarioModel){
+  registrar(usuario: UsuarioModel) {
     const authData = {
       ...usuario,
       returnSecureToken: true
-    }
+    };
 
     return this.http.post(`${this.authUrl}/accounts:signUp?key=${this.apiKey}`, authData)
-                    .pipe( map(res => {
-                      this.guardarToken(res['idToken']);
+                    .pipe( map( (res: any) => {
+                      this.guardarToken(res.idToken);
                       return res;
                     }));
   }
 
-  private guardarToken(token:string){
+  private guardarToken(token: string) {
     this.token = token;
     localStorage.setItem('idToken', token);
     this.isUserLoggedIn.next(true);
   }
 
-  leerToken(){
-    let t = localStorage.getItem('idToken');
-    if(t){
+  leerToken() {
+    const t = localStorage.getItem('idToken');
+    if (t) {
       this.token = t;
-      if(this.isLogged) this.isUserLoggedIn.next(true);
+      if (this.isLogged) { this.isUserLoggedIn.next(true); }
     } else {
       this.token = '';
     }
@@ -72,7 +73,7 @@ export class AuthService {
     return this.token;
   }
 
-  isLogged(): boolean{
+  isLogged(): boolean {
     return !this.helperJWT.isTokenExpired(this.token);
   }
 
