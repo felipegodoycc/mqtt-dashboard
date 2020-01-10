@@ -9,7 +9,6 @@ export class MyInterceptor implements HttpInterceptor {
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler): Observable<HttpEvent<any>> {
-      console.log('Ejecutando interceptor', request);
       if (request.method === 'GET') {
         const updatepRequest = request.clone({
           setHeaders: {
