@@ -34,7 +34,7 @@ export class SonoffDeviceComponent implements OnInit {
     });
   }
 
-  toogleDevice(id,channel='1'){
+  toogleDevice(id: string,channel='1'){
     this.loading = true;
     this.ewelinkService.toggleDevice(id, channel).subscribe( (res: any) => {
       this.status = res.status.state;
@@ -43,7 +43,7 @@ export class SonoffDeviceComponent implements OnInit {
 
   }
 
-  getPowerUsage(id){
+  getPowerUsage(id: string){
     this.ewelinkService.getPowerUsage(id).subscribe( res => {
       console.log(res);
     });
