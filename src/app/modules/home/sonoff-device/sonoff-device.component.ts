@@ -14,6 +14,7 @@ export class SonoffDeviceComponent implements OnInit {
   private updateSubscription: Subscription;
   status: string;
   loading = false;
+  lastUpdate = Date.now();
 
   constructor(private ewelinkService: EwelinkService) { }
 
@@ -27,6 +28,7 @@ export class SonoffDeviceComponent implements OnInit {
   updateDevice(){
     this.loading = true;
     this.ewelinkService.getDevice(this.device.deviceid).subscribe( (res: any) => {
+      this.lastUpdate = Date.now();
       this.device = res.device;
       this.loading = false;
     });
