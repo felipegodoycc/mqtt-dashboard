@@ -19,9 +19,10 @@ export class AuthService {
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
+    this.helperJWT = new JwtHelperService();
     this.leerToken();
     if (!this.isLogged) { this.isUserLoggedIn.next(false); }
-    this.helperJWT = new JwtHelperService();
+    
   }
 
   logout() {
@@ -63,7 +64,7 @@ export class AuthService {
 
   leerToken() {
     const t = localStorage.getItem('idToken');
-    if (t) {
+    if (t && !this.helperJWT.isTokenExpired(t)) {
       this.token = t;
       if (this.isLogged) { this.isUserLoggedIn.next(true); }
     } else {
