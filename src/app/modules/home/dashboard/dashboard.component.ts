@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MedicionService } from 'src/app/core/services/medicion.service';
-import { MedicionDTO } from 'src/app/shared/dto/medicion.dto';
+import { MedicionDTO, MedicionesPorHoraDTO, MedicionPorHora } from 'src/app/shared/dto/medicion.dto';
 import { Medicion } from 'src/app/shared/models/medicion.model';
 import { DataLineChart } from '../line-chart/interface/data.interface';
 import Swal from 'sweetalert2';
@@ -26,16 +26,15 @@ export class DashboardComponent implements OnInit {
   topics = [
     { value: 'casa/pieza/temp', viewValue: 'Temperatura pieza'},
     { value: 'casa/pieza/hum', viewValue: 'Humedad pieza'},
-    { value: 'casa/patio/temp', viewValue: 'Temperatura pieza'},
-    { value: 'casa/patio/hum', viewValue: 'Humedad pieza'},
+    { value: 'casa/patio/temp', viewValue: 'Temperatura patio'},
+    { value: 'casa/patio/hum', viewValue: 'Humedad patio'},
   ];
 
-  selected = this.topics[2].value;
+  selected = [this.topics[0].value];
   breakpoint: number;
 
   constructor(public medicionService: MedicionService) {
     this.fechaSelected(new Date(Date.now()));
-    this.getData();
     this.dateSelected = false;
   }
 
@@ -56,24 +55,33 @@ export class DashboardComponent implements OnInit {
     this.dateSelected = true;
   }
 
-  dataToGraph(mediciones: Medicion[], topic): DataLineChart {
-    const values = [];
-    const labels = [];
-    const colors = [{
-      borderColor: 'red',
-      backgroundColor: 'rgba(255,0,0,0.6)',
-    }];
-    const titulo = topic;
+  dataToGraph(mediciones: MedicionPorHora[]): DataLineChart {
+    const datasets = [];
+    let labels = [];
+    const colors = [
+      { borderColor: 'red' },
+      { borderColor: 'blue' },
+      { borderColor: 'green' },
+      { borderColor: 'black' },
+      { borderColor: 'cyan' }
+    ];
+
+    mediciones.map( (item: MedicionPorHora) => {
+      const preData = {
+        data: item.values.map( val => val.value),
+        label: item._id
+      };
+      labels = item.values.map( val => val.hora);
+      datasets.push(preData);
+    });
+
     const options = {
       responsive: true,
     };
 
-    for (const medicion of mediciones) {
-      values.push(medicion.value);
-      labels.push(medicion._id);
-    }
+    console.log("Datasets: ", datasets);
 
-    return new DataLineChart([{ data: values, label: titulo}],
+    return new DataLineChart(datasets,
                               labels,
                               colors,
                               [],
@@ -82,11 +90,11 @@ export class DashboardComponent implements OnInit {
 
   getData() {
     this.loading = true;
-    this.medicionService.getMedicionesPorHora(this.desde, this.hasta, this.selected).subscribe( (res: MedicionDTO) => {
+    this.medicionService.getMedicionesPorHora(this.desde, this.hasta, this.selected.join(',')).subscribe( (res: MedicionesPorHoraDTO) => {
       console.log('res ', res);
       if (res.items.length > 0) {
         console.log('llego data');
-        this.graphData = this.dataToGraph(res.items, this.selected);
+        this.graphData = this.dataToGraph(res.items);
         console.log(this.graphData);
         this.isData = true;
       } else {
