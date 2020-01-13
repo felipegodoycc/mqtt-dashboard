@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class CoreComponent {
   
-  isUserLoggedIn: boolean;
+  isUserLoggedIn: boolean = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

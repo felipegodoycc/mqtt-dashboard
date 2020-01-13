@@ -7,3 +7,10 @@
     font-size: 18px;
 }
 
+.detalle {
+    display: flex;
+    font-size: 12px;
+    justify-content: flex-end;
+    height: 35px;
+}
+

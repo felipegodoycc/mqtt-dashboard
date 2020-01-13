@@ -14,6 +14,7 @@ export class SonoffDeviceComponent implements OnInit {
   private updateSubscription: Subscription;
   status: string;
   loading = false;
+  lastUpdate = Date.now();
 
   constructor(private ewelinkService: EwelinkService) { }
 
@@ -27,12 +28,13 @@ export class SonoffDeviceComponent implements OnInit {
   updateDevice(){
     this.loading = true;
     this.ewelinkService.getDevice(this.device.deviceid).subscribe( (res: any) => {
+      this.lastUpdate = Date.now();
       this.device = res.device;
       this.loading = false;
     });
   }
 
-  toogleDevice(id,channel='1'){
+  toogleDevice(id: string,channel='1'){
     this.loading = true;
     this.ewelinkService.toggleDevice(id, channel).subscribe( (res: any) => {
       this.status = res.status.state;
@@ -41,7 +43,7 @@ export class SonoffDeviceComponent implements OnInit {
 
   }
 
-  getPowerUsage(id){
+  getPowerUsage(id: string){
     this.ewelinkService.getPowerUsage(id).subscribe( res => {
       console.log(res);
     });
