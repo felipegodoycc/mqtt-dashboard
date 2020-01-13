@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
   ];
 
   selected = this.topics[2].value;
+  breakpoint: number;
 
   constructor(public medicionService: MedicionService) {
     this.fechaSelected(new Date(Date.now()));
@@ -39,6 +40,11 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 4;
+  }
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 4;
   }
 
   fechaSelected(date: Date) {

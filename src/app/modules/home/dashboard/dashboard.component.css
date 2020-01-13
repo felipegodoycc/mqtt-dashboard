@@ -2,6 +2,10 @@
   margin: 20px;
 }
 
+.mat-grid-list {
+  margin: 20px;
+}
+
 .head-container {
   display: flex;
   justify-content: space-between;

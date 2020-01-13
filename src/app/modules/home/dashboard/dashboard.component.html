@@ -3,9 +3,11 @@
     <h1 class="mat-h1">Dashboard</h1>
     <button class="updateButton" mat-stroked-button (click)="updateCards()"><mat-icon>refresh</mat-icon></button>
   </div>
-  <div class="container">
-    <app-card-info *ngFor="let a of topics" [(topic)]="a.value" [refresh]="refreshCards.asObservable()"></app-card-info>
-  </div>
+  <mat-grid-list [cols]="breakpoint" rowHeight="2:1" (window:resize)="onResize($event)">
+    <mat-grid-tile *ngFor="let a of topics">
+      <app-card-info [(topic)]="a.value" [refresh]="refreshCards.asObservable()"></app-card-info>
+    </mat-grid-tile>
+  </mat-grid-list>
   <div class="container">
     <mat-form-field>
       <input matInput (dateInput)="fechaSelected($event.value)" [matDatepicker]="picker" placeholder="Seleccione un dia">
