@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SonoffDeviceComponent } from './sonoff-device/sonoff-device.component';
 import { DispositivosComponent } from './dispositivos/dispositivos.component';
 import { CardInfoComponent } from './card-info/card-info.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { CardInfoComponent } from './card-info/card-info.component';
     FormularioComponent,
     SonoffDeviceComponent,
     DispositivosComponent,
-    CardInfoComponent
+    CardInfoComponent,
+    BusquedaComponent
   ],
   imports: [
     CommonModule,

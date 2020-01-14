@@ -11,7 +11,7 @@ RUN npm install
 # add app
 COPY . /app
 
-RUN node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --prod --verbose=true --progress=true
+RUN node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --prod
 
 FROM httpd
 RUN rm -r /usr/local/apache2/htdocs/*
