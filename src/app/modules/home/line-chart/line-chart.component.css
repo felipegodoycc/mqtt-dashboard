@@ -1,6 +1,5 @@
 .chart-wrapper{
     position: relative;
-    margin: auto;
-    height: 60%;
-    width: 60%;
+    height: 40vh;
+    width: 40vw;
 }
