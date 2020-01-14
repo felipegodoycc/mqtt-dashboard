@@ -14,3 +14,26 @@
 .mat-form-field {
   margin: 0 10px;
 }
+
+.detalle{
+  width: 100%;
+  padding: 10px;
+}
+
+.detalle-titulo{
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.detalle-list-item {
+  font-size: 14px;
+  height: 25px;
+}
+
+.container-cards{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  overflow: hidden auto;
+  height: 100%;
+}
