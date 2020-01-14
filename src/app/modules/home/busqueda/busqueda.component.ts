@@ -53,8 +53,8 @@ export class BusquedaComponent implements OnInit {
       { borderColor: 'red' },
       { borderColor: 'blue' },
       { borderColor: 'green' },
-      { borderColor: 'black' },
-      { borderColor: 'cyan' }
+      { borderColor: 'cyan' },
+      { borderColor: 'yellowS' }
     ];
 
     mediciones.map( (item: MedicionPorHora) => {
@@ -68,6 +68,20 @@ export class BusquedaComponent implements OnInit {
 
     const options = {
       responsive: true,
+      scales: {
+        xAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Hora del dia'
+          }
+        }],
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Valor'
+          }
+        }]
+      }
     };
 
     return new DataLineChart(datasets,
