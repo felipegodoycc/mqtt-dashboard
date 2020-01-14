@@ -14,11 +14,12 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  mediciones: Medicion[] = [];
+  mediciones: MedicionPorHora[];
   graphData: DataLineChart;
   isData = false;
   refreshCards: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  dateSelected = false;
+  isDateSelected = false;
+  date = new Date();
   loading = false;
   desde: string;
   hasta: string;
@@ -35,7 +36,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(public medicionService: MedicionService) {
     this.fechaSelected(new Date(Date.now()));
-    this.dateSelected = false;
+    this.getData();
+    this.isDateSelected = true;
   }
 
   ngOnInit() {
@@ -52,7 +54,7 @@ export class DashboardComponent implements OnInit {
     const h = new Date(date);
     h.setHours(23, 59, 59);
     this.hasta = h.toISOString();
-    this.dateSelected = true;
+    this.isDateSelected = true;
   }
 
   dataToGraph(mediciones: MedicionPorHora[]): DataLineChart {
@@ -79,8 +81,6 @@ export class DashboardComponent implements OnInit {
       responsive: true,
     };
 
-    console.log("Datasets: ", datasets);
-
     return new DataLineChart(datasets,
                               labels,
                               colors,
@@ -91,14 +91,11 @@ export class DashboardComponent implements OnInit {
   getData() {
     this.loading = true;
     this.medicionService.getMedicionesPorHora(this.desde, this.hasta, this.selected.join(',')).subscribe( (res: MedicionesPorHoraDTO) => {
-      console.log('res ', res);
       if (res.items.length > 0) {
-        console.log('llego data');
+        this.mediciones = res.items;
         this.graphData = this.dataToGraph(res.items);
-        console.log(this.graphData);
         this.isData = true;
       } else {
-        console.log('no llego data');
         this.isData = false;
       }
       this.loading = false;
