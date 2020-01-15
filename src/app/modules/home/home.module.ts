@@ -13,6 +13,7 @@ import { SonoffDeviceComponent } from './sonoff-device/sonoff-device.component';
 import { DispositivosComponent } from './dispositivos/dispositivos.component';
 import { CardInfoComponent } from './card-info/card-info.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     HomeRoutingModule,
     AngularMaterialModule,
     ChartsModule,
