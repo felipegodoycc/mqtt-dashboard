@@ -10,7 +10,7 @@ import { MqttDeviceComponent } from './mqtt-device/mqtt-device.component';
     MqttDeviceComponent
   ],
   imports: [
-    CommonModule,
+    CommonModule
   ]
 })
-export class MqttModule { }
+export class MqttLocalModule { }

@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { DispositivosModule } from './dispositivos/dispositivos.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { MqttModule } from './mqtt/mqtt.module';
+import { MqttLocalModule } from './mqtt/mqtt.module';
 
 
 @NgModule({
@@ -28,7 +28,7 @@ import { MqttModule } from './mqtt/mqtt.module';
     ReactiveFormsModule,
     DispositivosModule,
     DashboardModule,
-    MqttModule
+    MqttLocalModule
   ]
 })
 export class HomeModule { }
