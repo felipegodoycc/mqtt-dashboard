@@ -1,0 +1,8 @@
+version: '3.3'
+
+services:
+  mqtt-dashboard:
+    container_name: front-mqtt
+    build: .
+    ports:
+      - "80:80"
