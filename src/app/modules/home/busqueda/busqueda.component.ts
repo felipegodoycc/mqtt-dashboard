@@ -17,6 +17,7 @@ export class BusquedaComponent implements OnInit {
   loading = false;
   desde: string;
   hasta: string;
+  breakpoint: number;
 
   topics = [
     { value: 'casa/pieza/temp', viewValue: 'Temperatura pieza'},
@@ -34,7 +35,11 @@ export class BusquedaComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 2;
+  }
 
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 2;
   }
 
   fechaSelected(date: Date) {
