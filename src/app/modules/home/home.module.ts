@@ -6,35 +6,29 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AngularMaterialModule } from 'src/app/core/angular-material.module';
 
 import { ChartsModule } from 'ng2-charts';
-import { LineChartComponent } from './line-chart/line-chart.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SonoffDeviceComponent } from './sonoff-device/sonoff-device.component';
-import { DispositivosComponent } from './dispositivos/dispositivos.component';
-import { CardInfoComponent } from './card-info/card-info.component';
-import { BusquedaComponent } from './busqueda/busqueda.component';
 import { RouterModule } from '@angular/router';
+import { DispositivosModule } from './dispositivos/dispositivos.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { MqttModule } from './mqtt/mqtt.module';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    DashboardComponent,
-    LineChartComponent,
     FormularioComponent,
-    SonoffDeviceComponent,
-    DispositivosComponent,
-    CardInfoComponent,
-    BusquedaComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     HomeRoutingModule,
     AngularMaterialModule,
-    ChartsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DispositivosModule,
+    DashboardModule,
+    MqttModule
   ]
 })
 export class HomeModule { }

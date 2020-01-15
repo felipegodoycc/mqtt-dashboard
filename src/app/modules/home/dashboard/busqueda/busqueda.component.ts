@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MedicionPorHora, MedicionesPorHoraDTO } from 'src/app/shared/dto/medicion.dto';
-import { DataLineChart } from '../line-chart/interface/data.interface';
 import { MedicionService } from 'src/app/core/services/medicion.service';
+import { DataLineChart } from '../line-chart/interface/data.interface';
 
 @Component({
   selector: 'app-busqueda',

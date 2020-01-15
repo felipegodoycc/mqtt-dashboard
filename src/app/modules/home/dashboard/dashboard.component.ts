@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MedicionService } from 'src/app/core/services/medicion.service';
 import { MedicionDTO, MedicionesPorHoraDTO, MedicionPorHora } from 'src/app/shared/dto/medicion.dto';
 import { Medicion } from 'src/app/shared/models/medicion.model';
-import { DataLineChart } from '../line-chart/interface/data.interface';
+import { DataLineChart } from './line-chart/interface/data.interface';
 import Swal from 'sweetalert2';
 import { EwelinkService } from 'src/app/core/services/ewelink.service';
 import { Device } from 'src/app/shared/interface/device.interface';
