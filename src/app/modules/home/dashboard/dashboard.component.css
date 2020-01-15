@@ -37,3 +37,8 @@
   overflow: hidden auto;
   height: 100%;
 }
+
+.card-info {
+  width: 90%;
+  height: 90%;
+}
