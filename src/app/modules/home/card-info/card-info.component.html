@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="card-info">
     <div style="width: 100%;" *ngIf="loading">
         <mat-spinner style="margin:10% auto;" ></mat-spinner>
     </div>
@@ -15,8 +15,7 @@
             </mat-list>
             <mat-list *ngIf="data.tipo==='hum'">
               <mat-list-item >{{ data.value }}% <mat-icon>opacity</mat-icon></mat-list-item>
-
-              <mat-list-item left class="detalle"> Ult. vez {{data.date | date:'medium' }}</mat-list-item>
+              <mat-list-item class="detalle"> Ult. vez {{data.date | date:'medium' }}</mat-list-item>
             </mat-list>
         </mat-card-content>
     </div>
