@@ -1,1 +1,12 @@
-<p>mqtt-device works!</p>
+<mat-card>
+  <mat-card-title>{{ topic }}</mat-card-title>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>{{ message }}</mat-list-item>
+      <mat-list-item *ngIf="messageReceived">Ult. vez {{ lastUpdate | date:'medium'}}</mat-list-item>
+      <mat-list-item *ngIf="!messageReceived">
+        Ult. vez: <mat-spinner diameter="30"></mat-spinner>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

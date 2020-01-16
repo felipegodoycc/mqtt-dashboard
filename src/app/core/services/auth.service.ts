@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UsuarioModel } from 'src/app/shared/models/usuario.model';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -21,7 +22,6 @@ export class AuthService {
     this.helperJWT = new JwtHelperService();
     this.leerToken();
     if (!this.isLogged) { this.isUserLoggedIn.next(false); }
-    
   }
 
   logout() {

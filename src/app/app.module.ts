@@ -11,6 +11,18 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyInterceptor } from './core/services/interceptor';
 import { registerLocaleData } from '@angular/common';
 import es from '@angular/common/locales/es';
+import {
+  MqttModule,
+  IMqttServiceOptions
+} from 'ngx-mqtt';
+
+export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
+  hostname: 'ifcomputing.com',
+  port: 9001,
+  path: '/mqtt',
+  username: 'fgodoy',
+  password: 'Pipeaxe96!'
+};
 
 registerLocaleData(es);
 
@@ -26,6 +38,7 @@ registerLocaleData(es);
     AuthModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MqttModule.forRoot(MQTT_SERVICE_OPTIONS)
   ],
   providers: [
     {

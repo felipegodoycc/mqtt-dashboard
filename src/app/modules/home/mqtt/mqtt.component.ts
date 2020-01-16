@@ -6,8 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mqtt.component.css']
 })
 export class MqttComponent implements OnInit {
+  topics = [
+    { value: 'casa/pieza/temp', viewValue: 'Temperatura pieza'},
+    { value: 'casa/pieza/hum', viewValue: 'Humedad pieza'},
+    { value: 'casa/patio/temp', viewValue: 'Temperatura patio'},
+    { value: 'casa/patio/hum', viewValue: 'Humedad patio'},
+  ];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
