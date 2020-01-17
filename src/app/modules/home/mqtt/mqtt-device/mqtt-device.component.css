@@ -1,5 +1,6 @@
 .mat-card {
   margin: 5px;
+  min-width: 15vw;
 }
 
 .mat-card-title {
