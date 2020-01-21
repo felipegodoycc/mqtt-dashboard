@@ -27,6 +27,7 @@ export class AuthAPIService {
 
   logout() {
     localStorage.removeItem('idToken');
+    localStorage.removeItem('user');
     this.isUserLoggedIn.next(false);
   }
 
