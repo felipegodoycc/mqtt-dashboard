@@ -38,6 +38,7 @@ export class AuthAPIService {
     return this.http.post(`${this.authUrl}/login`, body.toString(), { headers })
                     .pipe( map( (res: LoginDTO) => {
                       this.user = res.user;
+                      console.log(this.user)
                       this.guardarToken(res.token);
                       return res;
                     }));
