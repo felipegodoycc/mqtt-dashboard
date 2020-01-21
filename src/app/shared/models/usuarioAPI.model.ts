@@ -1,3 +1,5 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 interface UserData {
   name?: string;
   last_name?: string;
@@ -21,4 +23,12 @@ export class UsuarioAPI {
     password: string;
     userdata?: UserData;
     role: Role;
+
+    constructor(){
+      this.role = {
+        view: true,
+        control: false,
+        admin: true
+      }
+    }
 }
