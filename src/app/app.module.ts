@@ -15,6 +15,7 @@ import {
   MqttModule,
   IMqttServiceOptions
 } from 'ngx-mqtt';
+import { TokenInterceptor } from './core/services/tokenInterceptor';
 
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: 'ifcomputing.com',
@@ -44,6 +45,11 @@ registerLocaleData(es);
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MyInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
       multi: true
     },
     { provide: LOCALE_ID, useValue: 'es-CL' }

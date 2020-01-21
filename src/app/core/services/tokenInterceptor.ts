@@ -4,24 +4,25 @@ import { Observable } from 'rxjs';
 import { AuthAPIService } from './auth-api.service';
 
 @Injectable()
-export class MyInterceptor implements HttpInterceptor {
+export class TokenInterceptor implements HttpInterceptor {
+  token: string;
+
+  constructor(private authService: AuthAPIService) {
+    this.token = authService.getToken();
+  }
+
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler): Observable<HttpEvent<any>> {
-      if (request.method === 'GET') {
+      if ( this.authService.isLogged() ) {
         const updatepRequest = request.clone({
           setHeaders: {
-            'Cache-Control':  'no-cache, no-store, must-revalidate, post-check=0, pre-check=0',
-            Pragma: 'no-cache',
-            Expires: '0'
+            Authorization: `Bearer ${this.token}`
           }
         });
-
         return next.handle(updatepRequest);
-
       }
       return next.handle(request);
-
     }
 
 }
