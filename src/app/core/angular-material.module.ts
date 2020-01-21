@@ -22,9 +22,8 @@ import {
    MatCardModule,
    MatCheckboxModule,
    MatMenuModule,
-   MatSpinner,
    MatProgressSpinnerModule
-   
+
 } from '@angular/material';
 
 @NgModule({
@@ -50,7 +49,8 @@ import {
       MatCardModule,
       MatCheckboxModule,
       MatMenuModule,
-      MatProgressSpinnerModule
+      MatProgressSpinnerModule,
+      MatTableModule
    ],
    exports: [
       MatButtonModule,
@@ -72,7 +72,8 @@ import {
       MatCardModule,
       MatCheckboxModule,
       MatMenuModule,
-      MatProgressSpinnerModule
+      MatProgressSpinnerModule,
+      MatTableModule
    ],
    providers: [
       MatDatepickerModule,
