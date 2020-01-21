@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       if(this.recordarme) localStorage.setItem('username', this.usuario.username)
       this.router.navigate(['home'])
     }, err => {
-      console.log(err.error.error.message)
+      console.log(err)
       Swal.fire({
         title: 'Error',
         text: err.error.error.message,

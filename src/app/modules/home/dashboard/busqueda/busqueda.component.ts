@@ -26,7 +26,7 @@ export class BusquedaComponent implements OnInit {
     { value: 'casa/patio/hum', viewValue: 'Humedad patio'},
   ];
 
-  selected = [this.topics[0].value];
+  selected = [this.topics[0].value, this.topics[2].value];
 
   constructor(public medicionService: MedicionService) {
     this.fechaSelected(new Date());
@@ -74,17 +74,15 @@ export class BusquedaComponent implements OnInit {
     const options = {
       responsive: true,
       scales: {
-        xAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Hora del dia'
-          }
+        xAxes: [
+          {
+            scaleLabel: { display: true, labelString: 'Hora del dia' },
+            gridLines: { display: false }
         }],
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Valor'
-          }
+        yAxes: [
+          {
+            scaleLabel: { display: true, labelString: 'Valor' },
+            gridLines: { display: false }
         }]
       }
     };

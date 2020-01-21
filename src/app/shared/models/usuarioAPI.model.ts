@@ -1,3 +1,14 @@
+interface UserData {
+  name?: string;
+  last_name?: string;
+}
+
+interface Role {
+  admin: boolean;
+  control: boolean;
+  view: boolean;
+}
+
 export class UsuarioAPI {
     active?: boolean;
     reset_password?: boolean;
@@ -8,4 +19,6 @@ export class UsuarioAPI {
     created?: Date;
     updated?: Date;
     password: string;
+    userdata?: UserData;
+    role: Role;
 }

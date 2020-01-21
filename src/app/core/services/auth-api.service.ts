@@ -14,6 +14,7 @@ import { LoginDTO } from 'src/app/shared/interface/login.interface';
 export class AuthAPIService {
   private authUrl = `${ environment.apiURL }/auth`;
   private token: string;
+  user: UsuarioAPI;
   private helperJWT;
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -36,7 +37,7 @@ export class AuthAPIService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
     return this.http.post(`${this.authUrl}/login`, body.toString(), { headers })
                     .pipe( map( (res: LoginDTO) => {
-                      console.log('res',res)
+                      this.user = res.user;
                       this.guardarToken(res.token);
                       return res;
                     }));
@@ -60,9 +61,26 @@ export class AuthAPIService {
     return this.token;
   }
 
+  getToken(){
+    return this.token;
+  }
+
   isLogged(): boolean {
     const isExpired = this.helperJWT.isTokenExpired(this.token);
+    console.log('isLogged ', this.helperJWT.getTokenExpirationDate(this.token))
     if (isExpired) { localStorage.removeItem('idToken'); }
     return !isExpired;
+  }
+
+  isAdmin(): boolean {
+    return this.user.role.admin;
+  }
+
+  canControl(): boolean{
+    return this.user.role.control;
+  }
+
+  canView(): boolean {
+    return this.user.role.view;
   }
 }
