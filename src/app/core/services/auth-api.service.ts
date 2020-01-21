@@ -67,7 +67,6 @@ export class AuthAPIService {
 
   isLogged(): boolean {
     const isExpired = this.helperJWT.isTokenExpired(this.token);
-    console.log('isLogged ', this.helperJWT.getTokenExpirationDate(this.token))
     if (isExpired) { localStorage.removeItem('idToken'); }
     return !isExpired;
   }
