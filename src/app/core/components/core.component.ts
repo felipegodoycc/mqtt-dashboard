@@ -2,7 +2,6 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { AuthAPIService } from '../services/auth-api.service';
 
@@ -12,7 +11,7 @@ import { AuthAPIService } from '../services/auth-api.service';
   styleUrls: ['./core.component.css']
 })
 export class CoreComponent {
-  
+
   isUserLoggedIn: boolean = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -23,8 +22,8 @@ export class CoreComponent {
 
   constructor(private breakpointObserver: BreakpointObserver,
               public auth: AuthAPIService,
-              private router: Router) 
-  {    
+              private router: Router)
+  {
     this.auth.isUserLoggedIn.subscribe( res => this.isUserLoggedIn = res)
   }
 
