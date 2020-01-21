@@ -21,6 +21,7 @@ export class AuthAPIService {
   constructor(private http: HttpClient) {
     this.helperJWT = new JwtHelperService();
     this.leerToken();
+    this.readUser();
     if (!this.isLogged()) { this.isUserLoggedIn.next(false); }
   }
 
@@ -37,11 +38,21 @@ export class AuthAPIService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
     return this.http.post(`${this.authUrl}/login`, body.toString(), { headers })
                     .pipe( map( (res: LoginDTO) => {
-                      this.user = res.user;
-                      console.log(this.user)
+                      console.log(res)
+                      this.saveUser(res.user);
                       this.guardarToken(res.token);
                       return res;
                     }));
+  }
+
+  private saveUser(user) {
+    this.user = user;
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  private readUser() {
+    const u = localStorage.getItem('user');
+    if (u) { this.user = JSON.parse(u); } else { this.user = null; }
   }
 
   private guardarToken(token: string) {
@@ -62,7 +73,7 @@ export class AuthAPIService {
     return this.token;
   }
 
-  getToken(){
+  getToken() {
     return this.token;
   }
 
@@ -73,14 +84,14 @@ export class AuthAPIService {
   }
 
   isAdmin(): boolean {
-    return this.user.role.admin;
+    return this.user ? this.user.role.admin : false;
   }
 
-  canControl(): boolean{
-    return this.user.role.control;
+  canControl(): boolean {
+    return this.user ? this.user.role.control : false;
   }
 
   canView(): boolean {
-    return this.user.role.view;
+    return this.user ? this.user.role.view : false;
   }
 }

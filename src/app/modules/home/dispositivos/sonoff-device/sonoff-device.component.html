@@ -22,10 +22,12 @@
           </div>
           <mat-list-item class="detalle">Ult. vez {{ lastUpdate | date:'medium'}}</mat-list-item>
         </mat-list>
-        <button mat-stroked-button *ngIf="device.uiid===14 || device.uiid===32" [disabled]="loading" (click)="toogleDevice(device.deviceid)" >TOGGLE</button>
-        <div *ngIf="device.uiid===2">
-            <button mat-stroked-button [disabled]="loading" (click)="toogleDevice(device.deviceid,'1')">TOOGLE 1</button>
-            <button mat-stroked-button [disabled]="loading" (click)="toogleDevice(device.deviceid,'2')">TOGGLE 2</button>
+        <div *ngIf="canControl()">
+          <button mat-stroked-button *ngIf="device.uiid===14 || device.uiid===32" [disabled]="loading" (click)="toogleDevice(device.deviceid)" >TOGGLE</button>
+          <div *ngIf="device.uiid===2">
+              <button mat-stroked-button [disabled]="loading" (click)="toogleDevice(device.deviceid,'1')">TOOGLE 1</button>
+              <button mat-stroked-button [disabled]="loading" (click)="toogleDevice(device.deviceid,'2')">TOGGLE 2</button>
+          </div>
         </div>
     </mat-card-content>
   </mat-card>

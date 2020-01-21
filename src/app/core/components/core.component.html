@@ -8,7 +8,7 @@
       <a mat-list-item [routerLink]="'home/dashboard'">Home</a>
       <a mat-list-item [routerLink]="'home/dispositivos'">Sonoff</a>
       <a mat-list-item [routerLink]="'home/mqtt-control'">MQTT</a>
-      <a mat-list-item [routerLink]="'admin'">Admin</a>
+      <a mat-list-item *ngIf="auth.isAdmin()" [routerLink]="'admin'">Admin</a>
       <a mat-list-item (click)="logout()">Logout</a>
     </mat-nav-list>
   </mat-sidenav>

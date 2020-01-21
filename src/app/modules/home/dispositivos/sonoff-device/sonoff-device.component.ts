@@ -18,7 +18,7 @@ export class SonoffDeviceComponent implements OnInit {
   lastUpdate = Date.now();
 
   constructor(private ewelinkService: EwelinkService,
-              private authService: AuthAPIService) { }
+              private auth: AuthAPIService) { }
 
   ngOnInit() {
     this.updateSubscription = interval(10000).subscribe( val => {
@@ -49,6 +49,10 @@ export class SonoffDeviceComponent implements OnInit {
     this.ewelinkService.getPowerUsage(id).subscribe( res => {
       console.log(res);
     });
+  }
+
+  canControl(){
+    return this.auth.canControl();
   }
 
 }
