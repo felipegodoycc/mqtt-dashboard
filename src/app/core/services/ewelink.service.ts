@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EwelinkService {
-  private apiUrl = 'http://ifcomputing.com:3035/api/v1/ewelink/device';
+  private apiUrl = `${ environment.apiURL }/ewelink/device`;
   constructor(private http: HttpClient) {}
 
   getDevices() {

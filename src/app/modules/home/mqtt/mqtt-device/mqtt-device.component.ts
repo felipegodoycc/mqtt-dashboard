@@ -22,6 +22,7 @@ export class MqttDeviceComponent implements OnDestroy, OnInit {
     console.log(this.topic)
     this.subscription = this._mqttService.observe(this.topic).subscribe((message: IMqttMessage) => {
       this.message = message.payload.toString();
+      console.log(message)
       console.log('msg ', this.message);
       this.lastUpdate = Date.now();
       this.messageReceived = true;

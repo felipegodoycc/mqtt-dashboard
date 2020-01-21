@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UsuarioModel } from 'src/app/shared/models/usuario.model';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthAPIService } from 'src/app/core/services/auth-api.service';
+import { UsuarioAPI } from 'src/app/shared/models/usuarioAPI.model';
 
 @Component({
   selector: 'app-login',
@@ -12,15 +12,15 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
 
-  usuario: UsuarioModel = new UsuarioModel();
+  usuario: UsuarioAPI = new UsuarioAPI();
   recordarme = false;
 
-  constructor(private auth: AuthService,
+  constructor(private auth: AuthAPIService,
               private router: Router) { }
 
   ngOnInit() {
-    if( localStorage.getItem('email')) {
-      this.usuario.email = localStorage.getItem('email');
+    if( localStorage.getItem('username')) {
+      this.usuario.username = localStorage.getItem('username');
       this.recordarme = true;
     }
   }
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     Swal.showLoading();
     this.auth.login(this.usuario).subscribe( res => {
       Swal.close();
-      if(this.recordarme) localStorage.setItem('email', this.usuario.email)
+      if(this.recordarme) localStorage.setItem('username', this.usuario.username)
       this.router.navigate(['home'])
     }, err => {
       console.log(err.error.error.message)

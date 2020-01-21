@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Medicion } from 'src/app/shared/models/medicion.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MedicionService {
-  private apiUrl = 'http://ifcomputing.com:3035/api/v1';
+  private apiUrl = environment.apiURL;
 
   constructor(private http: HttpClient) { }
 

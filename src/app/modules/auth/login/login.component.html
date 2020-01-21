@@ -7,7 +7,7 @@
         <form class="example-form" #form (submit)="onSubmit(form)">
             <mat-card-content>
                 <mat-form-field class="full-width">
-                    <input matInput placeholder="Email" [(ngModel)]="usuario.email" name="email" required email>
+                    <input matInput placeholder="Usuario" [(ngModel)]="usuario.username" name="username" required >
                 </mat-form-field>
     
                 <mat-form-field class="full-width">
@@ -17,7 +17,6 @@
                 <mat-checkbox [(ngModel)]="recordarme" name="recordar" labelPosition="before">Recordarme</mat-checkbox>
             </mat-card-content>
             <button mat-stroked-button type="submit" class="btn-block">Iniciar sesion</button>
-            <!-- <a mat-stroked-button class="btn-block" [routerLink]="['','auth','register']">Registrarse</a> -->
         </form>
     </mat-card>
 

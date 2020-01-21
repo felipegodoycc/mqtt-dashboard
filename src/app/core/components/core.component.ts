@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { AuthAPIService } from '../services/auth-api.service';
 
 @Component({
   selector: 'app-core',
@@ -21,7 +22,7 @@ export class CoreComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver,
-              public auth: AuthService,
+              public auth: AuthAPIService,
               private router: Router) 
   {    
     this.auth.isUserLoggedIn.subscribe( res => this.isUserLoggedIn = res)
