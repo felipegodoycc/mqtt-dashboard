@@ -23,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule
   ],
   entryComponents: [
     UsersSheetComponent
