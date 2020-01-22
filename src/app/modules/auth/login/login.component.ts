@@ -19,32 +19,35 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    if( localStorage.getItem('username')) {
+    if ( localStorage.getItem('username')) {
       this.usuario.username = localStorage.getItem('username');
       this.recordarme = true;
     }
   }
 
-  onSubmit(f: NgForm){
-    if(f.invalid) return;
+  onSubmit(f: NgForm) {
+    if (f.invalid) { return; }
     Swal.fire({
       allowOutsideClick: false,
       title: 'Espere porfavor',
       icon: 'info'
-    })
+    });
     Swal.showLoading();
     this.auth.login(this.usuario).subscribe( res => {
       Swal.close();
-      if(this.recordarme) localStorage.setItem('username', this.usuario.username)
-      this.router.navigate(['home'])
+      if (res.reset_password){
+        this.router.navigateByUrl(`/auth/reset_password/${ res.token }`);
+      } else {
+        if (this.recordarme) { localStorage.setItem('username', this.usuario.username); }
+        this.router.navigate(['home']);
+      }
     }, err => {
-      console.log(err)
+      console.log(err);
       Swal.fire({
         title: 'Error',
-        text: err.error.error.message,
+        text: err,
         icon: 'error'
-      })
-    })
+      });
+    });
   }
-
 }

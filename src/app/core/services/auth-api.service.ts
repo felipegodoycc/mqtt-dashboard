@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { UsuarioAPI } from 'src/app/shared/models/usuarioAPI.model';
 import { map } from 'rxjs/operators';
 import { LoginDTO } from 'src/app/shared/interface/login.interface';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -39,11 +40,20 @@ export class AuthAPIService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
     return this.http.post(`${this.authUrl}/login`, body.toString(), { headers })
                     .pipe( map( (res: LoginDTO) => {
-                      console.log(res)
-                      this.saveUser(res.user);
-                      this.guardarToken(res.token);
-                      return res;
+                      if( res.reset_password ) {
+                        console.log('Debe reiniciar ');
+                        return res;
+                      } else {
+                        this.saveUser(res.user);
+                        this.guardarToken(res.token);
+                        return res;
+                      }
                     }));
+  }
+
+  resetPassword(token: string, newPassword: string) {
+    const url = `${ this.authUrl }/reset/${ token}`;
+    return this.http.post(url, { password: newPassword });
   }
 
   private saveUser(user) {
@@ -58,6 +68,7 @@ export class AuthAPIService {
 
   private guardarToken(token: string) {
     this.token = token;
+    console.log('Token guardado: ', this.token);
     localStorage.setItem('idToken', token);
     this.isUserLoggedIn.next(true);
   }
