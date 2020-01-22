@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AngularMaterialModule } from 'src/app/core/angular-material.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserDeleteDialogComponent } from './users/user-delete-dialog/user-delete-dialog.component';
 
 
 
@@ -14,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     UsersComponent,
     UsersSheetComponent,
+    UserDeleteDialogComponent,
     AdminComponent
   ],
   imports: [
@@ -26,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule
   ],
   entryComponents: [
-    UsersSheetComponent
+    UsersSheetComponent,
+    UserDeleteDialogComponent
   ]
 })
 export class AdminModule { }
