@@ -16,6 +16,7 @@ import {
   IMqttServiceOptions
 } from 'ngx-mqtt';
 import { TokenInterceptor } from './core/services/tokenInterceptor';
+import { RouterModule } from '@angular/router';
 
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: 'ifcomputing.com',
@@ -39,7 +40,8 @@ registerLocaleData(es);
     AuthModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MqttModule.forRoot(MQTT_SERVICE_OPTIONS)
+    MqttModule.forRoot(MQTT_SERVICE_OPTIONS),
+    RouterModule
   ],
   providers: [
     {

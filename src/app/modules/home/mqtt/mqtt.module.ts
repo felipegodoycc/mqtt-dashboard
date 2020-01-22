@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MqttComponent } from './mqtt.component';
 import { MqttDeviceComponent } from './mqtt-device/mqtt-device.component';
 import { AngularMaterialModule } from 'src/app/core/angular-material.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +14,8 @@ import { AngularMaterialModule } from 'src/app/core/angular-material.module';
   ],
   imports: [
     CommonModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    RouterModule
   ]
 })
 export class MqttLocalModule {}
