@@ -21,7 +21,8 @@
         (click)="sidenaver.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>MQTT App</span>
+      <span>MQTT App -</span>
+      <span class="mensaje-usuario"> - Bienvenido, {{ auth.user.username }}</span>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
