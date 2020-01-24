@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { UsuarioAPI } from 'src/app/shared/models/usuarioAPI.model';
-import { MatDialog, MatPaginator } from '@angular/material';
+import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
 import { UsersSheetComponent } from './users-sheet/users-sheet.component';
 import { Subscription } from 'rxjs';
 import { UserDeleteDialogComponent } from './user-delete-dialog/user-delete-dialog.component';
@@ -13,10 +13,9 @@ import { UserDeleteDialogComponent } from './user-delete-dialog/user-delete-dial
 })
 export class UsersComponent implements OnInit {
   loading = true;
-  users: UsuarioAPI[];
   displayedColumns: string[] = ['_id', 'username', 'email', 'role', 'active', 'options'];
   totalUsers = 0;
-
+  dataSource;
   subscription: Subscription = new Subscription();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -58,9 +57,16 @@ export class UsersComponent implements OnInit {
     )
   }
 
+  activateUser(user: UsuarioAPI){
+    this.userService.activateUser(user._id).subscribe( res => {
+      this.loadUsers(this.paginator.pageIndex + 1, this.paginator.length);
+    });
+  }
+
   loadUsers(page= 1, length = 10){
     this.userService.getUsers(page, length).subscribe( (res: any) => {
-      this.users = res.items;
+      this.dataSource = new MatTableDataSource<UsuarioAPI>(res.items);
+      this.dataSource.paginator = this.paginator;
       this.totalUsers = res.total;
       this.loading = false;
     });

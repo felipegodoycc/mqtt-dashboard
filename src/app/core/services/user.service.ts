@@ -30,5 +30,10 @@ export class UserService {
     return this.http.delete(url);
   }
 
+  activateUser(userID:string){
+    const url = `${ this.apiUrl }/${ userID }/activate`
+    return this.http.put(url, {});
+  }
+
 
 }
