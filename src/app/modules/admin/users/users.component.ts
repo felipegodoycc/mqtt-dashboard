@@ -30,7 +30,7 @@ export class UsersComponent implements OnInit {
     this.subscription.add(
       this.dialog.open(UsersSheetComponent, { width: '1000px'})
         .afterClosed().subscribe( res => {
-          this.loadUsers();
+          this.loadUsers(this.paginator.pageIndex + 1, this.paginator.length);
       })
     );
   }
