@@ -1,4 +1,4 @@
-import { ChartDataSets } from 'chart.js';
+import { ChartDataSets, ChartType } from 'chart.js';
 import { Label, Color } from 'ng2-charts';
 
 export class DataLineChart {
@@ -8,15 +8,15 @@ export class DataLineChart {
     lineChartsColors: Color[];
     lineChartLegend: boolean;
     lineChartPlugins: any[];
-    lineChartType: string;
+    lineChartType: ChartType;
 
     constructor(_lineChartData,
                 _lineChartLabels,
                 _lineChartsColors,
                 _lineChartPlugins=[],
-                _lineChartOptions = { responsive: true },                
-                _lineChartLegend = true,                
-                _lineChartType = 'line'){
+                _lineChartOptions = { responsive: true },
+                _lineChartLegend = true,
+                _lineChartType = 'line' as ChartType) {
                     this.lineChartData = _lineChartData;
                     this.lineChartLabels = _lineChartLabels;
                     this.lineChartsColors = _lineChartsColors;
