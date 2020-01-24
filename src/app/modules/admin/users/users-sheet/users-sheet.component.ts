@@ -12,6 +12,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class UsersSheetComponent implements OnInit {
   usuario: UsuarioAPI = new UsuarioAPI();
   edit = false;
+  boton = 'Crear';
 
   constructor(private userService: UserService,
               public dialogRef: MatDialogRef<UsersSheetComponent>,
@@ -21,12 +22,13 @@ export class UsersSheetComponent implements OnInit {
     if (this.entryData) {
       this.usuario = this.entryData;
       this.edit = true;
+      this.boton = 'Editar';
     }
   }
 
   onSubmit(form: NgForm) {
     console.log('form:', this.usuario);
-    if(this.edit){
+    if (this.edit) {
       this.userService.editUser(this.usuario).subscribe( res => {
         this.dialogRef.close(true);
       });

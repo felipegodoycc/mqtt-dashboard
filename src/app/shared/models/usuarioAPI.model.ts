@@ -28,7 +28,7 @@ export class UsuarioAPI {
       this.role = {
         view: true,
         control: false,
-        admin: true
+        admin: false
       }
     }
 }
