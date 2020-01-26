@@ -6,8 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { UsuarioAPI } from 'src/app/shared/models/usuarioAPI.model';
 import { map } from 'rxjs/operators';
 import { LoginDTO } from 'src/app/shared/interface/login.interface';
-import { Router } from '@angular/router';
-
+import SimpleCrypto from 'simple-crypto-js';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +16,12 @@ export class AuthAPIService {
   private token: string;
   user: UsuarioAPI;
   private helperJWT;
+  private simpleCrypto;
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
     this.helperJWT = new JwtHelperService();
+    this.simpleCrypto = new SimpleCrypto(environment.cryptoKey);
     this.leerToken();
     this.readUser();
     if (!this.isLogged()) { this.isUserLoggedIn.next(false); }
@@ -57,13 +58,13 @@ export class AuthAPIService {
   }
 
   private saveUser(user) {
-    this.user = user;
-    localStorage.setItem('user', JSON.stringify(user));
+    this.user = user;    
+    localStorage.setItem('user', this.simpleCrypto.encrypt(JSON.stringify(user)));
   }
 
   private readUser() {
     const u = localStorage.getItem('user');
-    if (u) { this.user = JSON.parse(u); } else { this.user = null; }
+    if (u) { this.user = JSON.parse(this.simpleCrypto.decrypt(u)); } else { this.user = null; }
   }
 
   private guardarToken(token: string) {

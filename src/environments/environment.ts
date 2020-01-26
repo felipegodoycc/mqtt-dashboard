@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiURL: "http://ifcomputing.com:3035/api/v1"
+  apiURL: "http://ifcomputing.com:3035/api/v1",
+  cryptoKey: 'llave-ultra-secreta'
 };
 
 /*
