@@ -5,4 +5,10 @@ services:
     container_name: front-mqtt
     build: .
     ports:
-      - "80:80"
+      - "8082:80"
+    networks:
+      - mynetwork
+
+networks:
+      mynetwork:
+        external: true
