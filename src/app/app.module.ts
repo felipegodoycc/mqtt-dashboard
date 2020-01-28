@@ -46,14 +46,14 @@ registerLocaleData(es);
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: MyInterceptor,
+      useClass: TokenInterceptor,
       multi: true
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
+      useClass: MyInterceptor,
       multi: true
-    },
+    },    
     { provide: LOCALE_ID, useValue: 'es-CL' }
   ],
   bootstrap: [AppComponent]
