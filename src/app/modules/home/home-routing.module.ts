@@ -5,17 +5,20 @@ import { FormularioComponent } from './formulario/formulario.component';
 import { DispositivosComponent } from './dispositivos/dispositivos.component';
 import { AuthGuard } from 'src/app/shared/guards/auth.guard';
 import { MqttComponent } from './mqtt/mqtt.component';
+import { HomeComponent } from './home.component';
+import { AdminComponent } from '../admin/admin.component';
 
 const routes: Routes = [
     {
         path: '',
         children: [
-            { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent },
-            { path: 'formulario', canActivate: [AuthGuard], component: FormularioComponent},
-            { path: 'dispositivos', canActivate: [AuthGuard], component: DispositivosComponent},
+            { path: 'dashboard', component: DashboardComponent },
+            { path: 'formulario', component: FormularioComponent},
+            { path: 'dispositivos', component: DispositivosComponent},
             { path: 'mqtt-control', component: MqttComponent },
-            { path: '', pathMatch: 'full', redirectTo: 'dashboard'}
-        ]
+            { path: '**', redirectTo: 'dashboard'}
+        ],
+        component: HomeComponent
     },
 ];
 

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Device } from 'src/app/shared/interface/device.interface';
 import { EwelinkService } from 'src/app/core/services/ewelink.service';
 import { Subscription, interval } from 'rxjs';
-import { AuthAPIService } from 'src/app/core/services/auth-api.service';
+import { AuthService } from 'src/app/core/services/auth-api.service';
 
 @Component({
   selector: 'app-sonoff-device',
@@ -18,7 +18,7 @@ export class SonoffDeviceComponent implements OnInit {
   lastUpdate = Date.now();
 
   constructor(private ewelinkService: EwelinkService,
-              private auth: AuthAPIService) { }
+              private auth: AuthService) { }
 
   ngOnInit() {
     this.updateSubscription = interval(10000).subscribe( val => {

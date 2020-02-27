@@ -19,11 +19,11 @@ export class UsersSheetComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public entryData: any) { }
 
   ngOnInit() {
-    if (this.entryData) {
-      this.usuario = this.entryData;
-      this.edit = true;
-      this.boton = 'Editar';
-    }
+    // if (this.entryData) {
+    //   this.usuario = this.entryData;
+    //   this.edit = true;
+    //   this.boton = 'Editar';
+    // }
   }
 
   onSubmit(form: NgForm) {

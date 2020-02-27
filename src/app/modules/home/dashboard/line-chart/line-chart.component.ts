@@ -7,10 +7,10 @@ import { DataLineChart } from './interface/data.interface';
   styleUrls: ['./line-chart.component.css']
 })
 export class LineChartComponent implements OnInit {
+  @Input() public data: DataLineChart = new DataLineChart();
 
-  @Input() data: DataLineChart;
-
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

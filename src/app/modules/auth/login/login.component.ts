@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { AuthAPIService } from 'src/app/core/services/auth-api.service';
+import { AuthService } from 'src/app/core/services/auth-api.service';
 import { UsuarioAPI } from 'src/app/shared/models/usuarioAPI.model';
 
 @Component({
@@ -15,8 +15,9 @@ export class LoginComponent implements OnInit {
   usuario: UsuarioAPI = new UsuarioAPI();
   recordarme = false;
 
-  constructor(private auth: AuthAPIService,
-              private router: Router) { }
+  constructor(private auth: AuthService,
+              private router: Router)
+  {}
 
   ngOnInit() {
     if ( localStorage.getItem('username')) {

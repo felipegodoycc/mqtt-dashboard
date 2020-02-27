@@ -18,17 +18,17 @@ export class UsuarioAPI {
     username: string;
     email?: string;
     reset_token?: string;
-    created?: Date;
-    updated?: Date;
-    password: string;
+    created?: Date | string;
+    updated?: Date | string;
+    password?: string;
     userdata?: UserData;
     role: Role;
 
     constructor(){
       this.role = {
-        view: true,
+        admin: false,
         control: false,
-        admin: false
+        view: true,
       }
     }
 }

@@ -11,7 +11,7 @@ import SimpleCrypto from 'simple-crypto-js';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthAPIService {
+export class AuthService {
   private authUrl = `${ environment.apiURL }/auth`;
   private token: string;
   user: UsuarioAPI;
@@ -92,7 +92,10 @@ export class AuthAPIService {
 
   isLogged(): boolean {
     const isExpired = this.helperJWT.isTokenExpired(this.token);
-    if (isExpired) { localStorage.removeItem('idToken'); }
+    console.log('Logged? ', !isExpired);
+    if (isExpired) {
+      localStorage.removeItem('idToken');
+    }
     return !isExpired;
   }
 

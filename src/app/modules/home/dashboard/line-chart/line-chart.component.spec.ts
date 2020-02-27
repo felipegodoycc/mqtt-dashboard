@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LineChartComponent } from './line-chart.component';
+import { ChartsModule } from 'ng2-charts';
+import { DataLineChart } from './interface/data.interface';
 
 describe('LineChartComponent', () => {
   let component: LineChartComponent;
@@ -8,6 +10,7 @@ describe('LineChartComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ChartsModule],
       declarations: [ LineChartComponent ]
     })
     .compileComponents();

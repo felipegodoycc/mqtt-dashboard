@@ -14,10 +14,9 @@
                     <input matInput placeholder="Password" minlength="6" [(ngModel)]="usuario.password" name="password" type="password" required>
                 </mat-form-field>
     
-                <mat-checkbox [(ngModel)]="recordarme" name="recordar" labelPosition="before">Recordarme</mat-checkbox>
+                <mat-checkbox ngDefaultControl [(ngModel)]="recordarme" name="recordarme" labelPosition="before">Recordarme</mat-checkbox>
             </mat-card-content>
             <button mat-stroked-button type="submit" class="btn-block">Iniciar sesion</button>
         </form>
     </mat-card>
-
 </div>

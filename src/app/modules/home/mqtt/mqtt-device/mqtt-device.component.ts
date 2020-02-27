@@ -8,7 +8,7 @@ import { MqttService, IMqttMessage } from 'ngx-mqtt';
   styleUrls: ['./mqtt-device.component.css']
 })
 export class MqttDeviceComponent implements OnDestroy, OnInit {
-  @Input() topic = '';
+  @Input() public topic = '';
   private subscription: Subscription;
   public message: string;
   public lastUpdate = Date.now();

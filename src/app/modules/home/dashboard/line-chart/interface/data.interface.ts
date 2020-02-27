@@ -10,9 +10,9 @@ export class DataLineChart {
     lineChartPlugins: any[];
     lineChartType: ChartType;
 
-    constructor(_lineChartData,
-                _lineChartLabels,
-                _lineChartsColors,
+    constructor(_lineChartData = [{ data: [1,2,4,5], label: ''}],
+                _lineChartLabels = [],
+                _lineChartsColors = [],
                 _lineChartPlugins=[],
                 _lineChartOptions = { responsive: true },
                 _lineChartLegend = true,
