@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MedicionPorHora, MedicionesPorHoraDTO } from 'src/app/shared/dto/medicion.dto';
 import { MedicionService } from 'src/app/core/services/medicion.service';
 import { DataLineChart } from '../line-chart/interface/data.interface';
+import { Topic } from 'src/app/shared/models/topic.model';
+import { TopicService } from 'src/app/core/services/topic.service';
 
 @Component({
   selector: 'app-busqueda',
@@ -9,6 +11,7 @@ import { DataLineChart } from '../line-chart/interface/data.interface';
   styleUrls: ['./busqueda.component.css']
 })
 export class BusquedaComponent implements OnInit {
+  topics: Topic[] = [];
   mediciones: MedicionPorHora[];
   graphData: DataLineChart;
   isData = false;
@@ -18,24 +21,23 @@ export class BusquedaComponent implements OnInit {
   desde: string;
   hasta: string;
   breakpoint: number;
-
-  topics = [
-    { value: 'casa/pieza/temp', viewValue: 'Temperatura pieza'},
-    { value: 'casa/pieza/hum', viewValue: 'Humedad pieza'},
-    { value: 'casa/patio/temp', viewValue: 'Temperatura patio'},
-    { value: 'casa/patio/hum', viewValue: 'Humedad patio'},
-  ];
-
-  selected = [this.topics[0].value, this.topics[2].value];
-
-  constructor(public medicionService: MedicionService) {
-    this.fechaSelected(new Date());
-    this.getData();
-    this.isDateSelected = true;
+  selected = [];
+  
+  constructor(public medicionService: MedicionService,
+              private topicService: TopicService) {
+    this.topicService.getTopics().subscribe( (res:any) => {
+      this.topics = res.items;
+      this.selected = [this.topics[0].topic, this.topics[2].topic];
+      this.loading = false;
+      this.getData();
+    })
   }
-
+  
   ngOnInit() {
-    this.breakpoint = (window.innerWidth <= 400) ? 1 : 2;
+    console.log('Topicos: ',this.topics)
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 2;    
+    this.fechaSelected(new Date());    
+    this.isDateSelected = true;
   }
 
   onResize(event) {

@@ -5,7 +5,7 @@
   </div>
   <mat-grid-list [cols]="breakpoint" rowHeight="2:1" (window:resize)="onResize($event)">
     <mat-grid-tile *ngFor="let a of topics">
-      <app-card-info class="card-info" [(topic)]="a.value" [refresh]="refreshCards.asObservable()"></app-card-info>
+      <app-card-info class="card-info" [(topic)]="a" [refresh]="refreshCards.asObservable()"></app-card-info>
     </mat-grid-tile>
   </mat-grid-list>
   <app-busqueda></app-busqueda>

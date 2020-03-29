@@ -3,7 +3,7 @@
         <mat-spinner style="margin:10% auto;" ></mat-spinner>
     </div>
     <div *ngIf="data && !loading">
-        <mat-card-title>{{ data.topic }}</mat-card-title>
+        <mat-card-title>{{ topic.name }}</mat-card-title>
         <mat-card-content>
             <mat-list *ngIf="data.tipo==='temp'">
                 <mat-list-item >

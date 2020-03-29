@@ -7,6 +7,8 @@ import Swal from 'sweetalert2';
 import { EwelinkService } from 'src/app/core/services/ewelink.service';
 import { Device } from 'src/app/shared/interface/device.interface';
 import { BehaviorSubject } from 'rxjs';
+import { Topic } from 'src/app/shared/models/topic.model';
+import { TopicService } from 'src/app/core/services/topic.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,14 +19,12 @@ export class DashboardComponent implements OnInit {
   refreshCards: BehaviorSubject<boolean> = new BehaviorSubject(false);
   breakpoint: number;
 
-  topics = [
-    { value: 'casa/pieza/temp', viewValue: 'Temperatura pieza'},
-    { value: 'casa/pieza/hum', viewValue: 'Humedad pieza'},
-    { value: 'casa/patio/temp', viewValue: 'Temperatura patio'},
-    { value: 'casa/patio/hum', viewValue: 'Humedad patio'},
-  ];
+  topics: Topic[];
 
-  constructor() {
+  constructor(private topicService: TopicService) {
+    this.topicService.getTopics(1,4).subscribe( (res:any) => {
+      this.topics = res.items;
+    })
   }
 
   ngOnInit() {
