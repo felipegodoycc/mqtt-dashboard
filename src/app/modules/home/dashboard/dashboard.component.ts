@@ -22,13 +22,13 @@ export class DashboardComponent implements OnInit {
   topics: Topic[];
 
   constructor(private topicService: TopicService) {
+  }
+  
+  ngOnInit() {
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 4;
     this.topicService.getTopics(1,4).subscribe( (res:any) => {
       this.topics = res.items;
     })
-  }
-
-  ngOnInit() {
-    this.breakpoint = (window.innerWidth <= 400) ? 1 : 4;
   }
 
   onResize(event) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MedicionPorHora, MedicionesPorHoraDTO } from 'src/app/shared/dto/medicion.dto';
 import { MedicionService } from 'src/app/core/services/medicion.service';
 import { DataLineChart } from '../line-chart/interface/data.interface';
@@ -11,7 +11,7 @@ import { TopicService } from 'src/app/core/services/topic.service';
   styleUrls: ['./busqueda.component.css']
 })
 export class BusquedaComponent implements OnInit {
-  topics: Topic[] = [];
+  topicos: Topic[];
   mediciones: MedicionPorHora[];
   graphData: DataLineChart;
   isData = false;
@@ -25,19 +25,20 @@ export class BusquedaComponent implements OnInit {
   
   constructor(public medicionService: MedicionService,
               private topicService: TopicService) {
+    this.fechaSelected(new Date());    
+    this.isDateSelected = true;
     this.topicService.getTopics().subscribe( (res:any) => {
-      this.topics = res.items;
-      this.selected = [this.topics[0].topic, this.topics[2].topic];
+      this.topicos = res.items;
+      this.selected = [this.topicos[0].topic, this.topicos[2].topic];
       this.loading = false;
       this.getData();
     })
   }
   
   ngOnInit() {
-    console.log('Topicos: ',this.topics)
+    console.log('Topicos: ',this.topicos)
     this.breakpoint = (window.innerWidth <= 400) ? 1 : 2;    
-    this.fechaSelected(new Date());    
-    this.isDateSelected = true;
+    
   }
 
   onResize(event) {
