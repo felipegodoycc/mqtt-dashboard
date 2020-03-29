@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Topic } from 'src/app/shared/models/topic.model';
+import { TopicService } from 'src/app/core/services/topic.service';
 
 @Component({
   selector: 'app-mqtt',
@@ -6,17 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mqtt.component.css']
 })
 export class MqttComponent implements OnInit {
-  topics = [
-    { value: 'casa/pieza/temp', viewValue: 'Temperatura pieza'},
-    { value: 'casa/pieza/hum', viewValue: 'Humedad pieza'},
-    { value: 'casa/patio/temp', viewValue: 'Temperatura patio'},
-    { value: 'casa/patio/hum', viewValue: 'Humedad patio'},
-  ];
+  loading:boolean;
+  topics : Topic[];
 
-  constructor() {
+  constructor(private topicService: TopicService) {
+    this.loading = true;
   }
 
   ngOnInit() {
+    this.topicService.getTopics().subscribe( (res:any) => {
+      this.topics = res.items;
+      this.loading = false;
+    })
   }
 
 }

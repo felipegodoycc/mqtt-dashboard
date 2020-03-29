@@ -3,10 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { DispositivosComponent } from './dispositivos/dispositivos.component';
-import { AuthGuard } from 'src/app/shared/guards/auth.guard';
 import { MqttComponent } from './mqtt/mqtt.component';
 import { HomeComponent } from './home.component';
-import { AdminComponent } from '../admin/admin.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
     {
@@ -16,6 +15,10 @@ const routes: Routes = [
             { path: 'formulario', component: FormularioComponent},
             { path: 'dispositivos', component: DispositivosComponent},
             { path: 'mqtt-control', component: MqttComponent },
+            { 
+                path: 'admin', 
+                loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) 
+            },
             { path: '**', redirectTo: 'dashboard'}
         ],
         component: HomeComponent

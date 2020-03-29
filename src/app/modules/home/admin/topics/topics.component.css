@@ -1,0 +1,13 @@
+.tabla-usuarios {
+    width: 90%;
+  }
+  
+  .head-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .user-container {
+    margin: 20px;
+  }
+  

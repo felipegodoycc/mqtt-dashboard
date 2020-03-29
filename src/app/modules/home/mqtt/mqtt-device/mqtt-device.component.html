@@ -1,8 +1,8 @@
 <mat-card>
-  <mat-card-title>{{ topic }}</mat-card-title>
+  <mat-card-title>{{ topic.name }}</mat-card-title>
   <mat-card-content>
     <mat-list>
-      <mat-list-item>{{ message }}</mat-list-item>
+      <mat-list-item>{{ message }} {{ topic.unit }} </mat-list-item>
       <mat-list-item *ngIf="messageReceived">Ult. vez {{ lastUpdate | date:'medium'}}</mat-list-item>
       <mat-list-item *ngIf="!messageReceived">
         Ult. vez: <mat-spinner diameter="30"></mat-spinner>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MqttService, IMqttMessage } from 'ngx-mqtt';
+import { Topic } from 'src/app/shared/models/topic.model';
 
 @Component({
   selector: 'app-mqtt-device',
@@ -8,7 +9,7 @@ import { MqttService, IMqttMessage } from 'ngx-mqtt';
   styleUrls: ['./mqtt-device.component.css']
 })
 export class MqttDeviceComponent implements OnDestroy, OnInit {
-  @Input() public topic = '';
+  @Input() public topic:Topic;
   private subscription: Subscription;
   public message: string;
   public lastUpdate = Date.now();
@@ -20,7 +21,7 @@ export class MqttDeviceComponent implements OnDestroy, OnInit {
 
   ngOnInit(){
     console.log(this.topic)
-    this.subscription = this._mqttService.observe(this.topic).subscribe((message: IMqttMessage) => {
+    this.subscription = this._mqttService.observe(this.topic.topic).subscribe((message: IMqttMessage) => {
       this.message = message.payload.toString();
       console.log(message)
       console.log('msg ', this.message);

@@ -8,28 +8,32 @@ import { AngularMaterialModule } from 'src/app/core/angular-material.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserDeleteDialogComponent } from './users/user-delete-dialog/user-delete-dialog.component';
-
-
+import { TopicsComponent } from './topics/topics.component';
+import { TopicsSheetComponent } from './topics/topic-sheet/topics-sheet.component';
+import { TopicDeleteDialogComponent } from './topics/topic-delete-dialog/topic-delete-dialog.component';
 
 @NgModule({
   declarations: [
     UsersComponent,
     UsersSheetComponent,
     UserDeleteDialogComponent,
-    AdminComponent
+    AdminComponent,
+    TopicsSheetComponent,
+    TopicDeleteDialogComponent,
+    TopicsComponent
   ],
   imports: [
     CommonModule,
-    RouterModule,
     AngularMaterialModule,
     AdminRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    RouterModule
+    ReactiveFormsModule
   ],
   entryComponents: [
     UsersSheetComponent,
-    UserDeleteDialogComponent
+    UserDeleteDialogComponent,
+    TopicsSheetComponent,
+    TopicDeleteDialogComponent
   ]
 })
 export class AdminModule { }

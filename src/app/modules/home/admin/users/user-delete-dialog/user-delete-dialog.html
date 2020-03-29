@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>¡CUIDADO! ¿Estas Seguro? </h1>
+<div mat-dialog-content>
+  <p>Estas a punto de inhabilitar<p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>No</button>
+  <button mat-button [mat-dialog-close]="true" class="red">ELIMINAR</button>
+</div>

@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 import { DispositivosModule } from './dispositivos/dispositivos.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { MqttLocalModule } from './mqtt/mqtt.module';
-import { AdminModule } from '../admin/admin.module';
+import { AdminModule } from './admin/admin.module';
 
 
 @NgModule({

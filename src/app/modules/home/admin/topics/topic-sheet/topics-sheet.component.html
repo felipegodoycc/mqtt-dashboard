@@ -1,0 +1,24 @@
+<div>
+  <mat-card>
+    <mat-card-header>
+        <mat-card-title>{{ boton }} usuario</mat-card-title>
+    </mat-card-header>
+
+    <form class="example-form" #form (submit)="onSubmit(form)">
+        <mat-card-content>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nombre" [(ngModel)]="topic.name" name="name" required >
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Topico" [(ngModel)]="topic.topic" name="topic" required>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Unidad" [(ngModel)]="topic.unit" name="unit" required>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-footer>
+          <button mat-stroked-button type="submit" class="button blue">{{ boton }}</button>
+        </mat-card-footer>
+    </form>
+  </mat-card>
+</div>
