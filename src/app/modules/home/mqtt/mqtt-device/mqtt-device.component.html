@@ -1,12 +1,21 @@
 <mat-card>
-  <mat-card-title>{{ topic.name }}</mat-card-title>
   <mat-card-content>
-    <mat-list>
-      <mat-list-item>{{ message }} {{ topic.unit }} </mat-list-item>
-      <mat-list-item *ngIf="messageReceived">Ult. vez {{ lastUpdate | date:'medium'}}</mat-list-item>
-      <mat-list-item *ngIf="!messageReceived">
-        Ult. vez: <mat-spinner diameter="30"></mat-spinner>
-      </mat-list-item>
-    </mat-list>
+    <div *ngIf="topic.type === 'sensor'">
+      <app-medidor  [gaugeValue]="value"
+                    [gaugeAppendText]="topic.unit"
+                    [minValue]="topic.minValue"
+                    [maxValue]="topic.maxValue"
+                    [gaugeLabel]="topic.name"></app-medidor>
+      <mat-list>
+        <mat-list-item *ngIf="messageReceived">Ult. vez {{ lastUpdate | date:'medium'}}</mat-list-item>
+        <mat-list-item *ngIf="!messageReceived">
+          Ult. vez: <mat-spinner diameter="30"></mat-spinner>
+        </mat-list-item>
+      </mat-list>
+    </div>    
+    <div *ngIf="topic.type === 'switch' && authService.canControl()">
+      <p>Status:</p>
+      <mat-slide-toggle [(ngModel)]="switchStatus" (change)="cambioSwitch()"></mat-slide-toggle>
+    </div>
   </mat-card-content>
 </mat-card>

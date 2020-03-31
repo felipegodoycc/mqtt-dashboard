@@ -1,7 +1,12 @@
 export class Topic {
     _id: string;
-    name: string;
-    topic: string;
+    name:string;
+    topic:string;
     unit:string;
-    active: boolean;
+    type:string;
+    minValue?: number;
+    maxValue?: number;
+    onSwitchValue?: string;
+    offSwitchValue?: string;
+    active:boolean;
 }

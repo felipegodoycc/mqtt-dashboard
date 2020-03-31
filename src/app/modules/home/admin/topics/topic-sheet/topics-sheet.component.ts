@@ -14,16 +14,19 @@ export class TopicsSheetComponent implements OnInit {
   edit = false;
   boton = 'Crear';
 
+  tipos = ["sensor","switch"];
+  tipoSelected = "sensor";
+
   constructor(private topicService: TopicService,
               public dialogRef: MatDialogRef<TopicsSheetComponent>,
               @Inject(MAT_DIALOG_DATA) public entryData: any) { }
 
   ngOnInit() {
-    // if (this.entryData) {
-    //   this.topic = this.entryData;
-    //   this.edit = true;
-    //   this.boton = 'Editar';
-    // }
+    if (this.entryData) {
+      this.topic = this.entryData;
+      this.edit = true;
+      this.boton = 'Editar';
+    }
   }
 
   onSubmit(form: NgForm) {

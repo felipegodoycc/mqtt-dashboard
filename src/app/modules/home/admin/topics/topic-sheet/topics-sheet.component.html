@@ -1,7 +1,7 @@
 <div>
   <mat-card>
     <mat-card-header>
-        <mat-card-title>{{ boton }} usuario</mat-card-title>
+        <mat-card-title>{{ boton }} topico </mat-card-title>
     </mat-card-header>
 
     <form class="example-form" #form (submit)="onSubmit(form)">
@@ -12,9 +12,33 @@
           <mat-form-field class="full-width">
             <input matInput placeholder="Topico" [(ngModel)]="topic.topic" name="topic" required>
           </mat-form-field>
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Unidad" [(ngModel)]="topic.unit" name="unit" required>
+          <mat-form-field>
+            <mat-label>Tipo: </mat-label> 
+            <mat-select [(value)]="tipoSelected" [(ngModel)]="topic.type" name="type">
+              <mat-option *ngFor="let t of tipos" [value]="t">
+                {{ t | titlecase }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
+          <div *ngIf="tipoSelected === 'sensor'">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Unidad" [(ngModel)]="topic.unit" name="unit" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Valor minimo" [(ngModel)]="topic.minValue" name="minValue" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Valor maximo" [(ngModel)]="topic.maxValue" name="maxValue" required>
+            </mat-form-field>
+          </div>
+          <div *ngIf="tipoSelected === 'switch'">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Valor Switch ON" [(ngModel)]="topic.onSwitchValue" name="onSwitchValue" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Valor Switch OFF" [(ngModel)]="topic.offSwitchValue" name="offSwitchValue" required>
+            </mat-form-field>
+          </div>
         </mat-card-content>
         <mat-card-footer>
           <button mat-stroked-button type="submit" class="button blue">{{ boton }}</button>

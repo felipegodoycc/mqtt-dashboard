@@ -13,7 +13,7 @@ import { TopicDeleteDialogComponent } from './topic-delete-dialog/topic-delete-d
 })
 export class TopicsComponent implements OnInit {
   loading = true;
-  displayedColumns: string[] = ['_id', 'name', 'topic', 'unit', 'active', 'options'];
+  displayedColumns: string[] = ['_id', 'name', 'topic', 'unit', 'type', 'active', 'options'];
   totalTopics = 0;
   dataSource;
   subscription: Subscription = new Subscription();

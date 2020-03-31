@@ -17,6 +17,7 @@ import {
 } from 'ngx-mqtt';
 import { TokenInterceptor } from './core/services/tokenInterceptor';
 import { RouterModule } from '@angular/router';
+import { NgxGaugeModule } from 'ngx-gauge';
 
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: 'ifcomputing.com',
@@ -35,6 +36,7 @@ registerLocaleData(es);
   ],
   imports: [
     BrowserModule,
+    NgxGaugeModule,
     AppRoutingModule,
     AngularMaterialModule,
     AuthModule,

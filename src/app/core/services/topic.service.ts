@@ -17,7 +17,7 @@ export class TopicService {
 
   editTopic(topic: Topic) {
     const url = `${this.apiUrl}/${topic._id}`;
-    return this.http.put(url, { data: Topic});
+    return this.http.put(url, { data: topic});
   }
 
   getTopics(page: number = 1, limit: number = 10) {
