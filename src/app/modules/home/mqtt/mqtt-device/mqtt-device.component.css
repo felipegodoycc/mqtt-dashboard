@@ -1,8 +1,38 @@
 .mat-card {
-  margin: 5px;
-  min-width: 15vw;
+  margin: 8px;
 }
 
 .mat-card-title {
   font-size: 18px;
+}
+
+.mat-card-content{
+  height: 100%;
+}
+
+.mat-icon {
+  height: 80px;
+  width: 80px;;
+  font-size: 80px;
+}
+.boton-on {
+  color: rgba(63, 81, 181, 1);  
+}
+.boton-switch {
+  cursor: pointer;
+  width: 200px; 
+  background: white;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+  box-shadow: 0 0 3px gray;
+  border: 2px solid rgba(63, 81, 181, 1);
+}
+
+.container-switch {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
 }

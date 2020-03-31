@@ -5,6 +5,9 @@
            [append]="gaugeAppendText"
            [min]="minValue"
            [max]="maxValue"
-           [thick]=thickValue>
+           [thick]=thickValue
+           [foregroundColor]="color"
+           [backgroundColor]="backColor">
+           <ngx-gauge-value style="font-size: 80%;"> {{ gaugeValue }} </ngx-gauge-value>
     </ngx-gauge>
 </div>

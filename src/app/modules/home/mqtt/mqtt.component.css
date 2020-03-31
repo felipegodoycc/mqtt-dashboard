@@ -1,6 +1,8 @@
 .container-mqtt {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    margin: 0 20px;
+    justify-content: space-evenly;
+    align-items: stretch;
+    padding: 20px 20px;
+    margin: 0 auto;
 }

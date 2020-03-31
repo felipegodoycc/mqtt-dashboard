@@ -15,7 +15,7 @@ export class TopicsComponent implements OnInit {
   loading = true;
   displayedColumns: string[] = ['_id', 'name', 'topic', 'unit', 'type', 'active', 'options'];
   totalTopics = 0;
-  dataSource;
+  dataSource:MatTableDataSource<Topic>;
   subscription: Subscription = new Subscription();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -65,7 +65,7 @@ export class TopicsComponent implements OnInit {
 
   loadTopics(page= 1, length = 10){
     this.topicService.getTopics(page, length).subscribe( (res: any) => {
-      this.dataSource = new MatTableDataSource<Topic>(res.items);
+      this.dataSource = res.items;
       this.dataSource.paginator = this.paginator;
       this.totalTopics = res.total;
       this.loading = false;

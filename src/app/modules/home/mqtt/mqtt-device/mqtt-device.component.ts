@@ -29,7 +29,8 @@ export class MqttDeviceComponent implements OnDestroy, OnInit {
       this.message = message.payload.toString();
       this.lastUpdate = Date.now();
       this.messageReceived = true;
-      if(this.topic.type === 'sensor') this.value = parseInt(this.message);
+      if(this.topic.type === 'sensor') this.value = parseFloat(this.message);
+      if(this.topic.type === 'switch') this.switchStatus = !!parseInt(this.message);
     });
   }
 
@@ -38,6 +39,7 @@ export class MqttDeviceComponent implements OnDestroy, OnInit {
   }
 
   cambioSwitch(){
+    this.switchStatus = !this.switchStatus;
     console.log("Valor switch: ", this.switchStatus);
     const msg = this.switchStatus ? "1" : "0";
     this.publish(this.topic.topic, msg);

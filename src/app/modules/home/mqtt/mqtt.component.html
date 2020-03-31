@@ -1,4 +1,5 @@
-<div class="container-mqtt">
+<div class="container-mqtt" fxFlexAlign="stretch" fxLayout="row">
+    <h2 style="width: 100%;">Dispositivos MQTT</h2>
     <app-mqtt-device *ngFor="let topic of topics" [topic]="topic"></app-mqtt-device>
 </div>
 
