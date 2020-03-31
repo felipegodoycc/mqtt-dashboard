@@ -16,6 +16,7 @@
     <div *ngIf="topic.type === 'switch' && authService.canControl()">
       <p>Status:</p>
       <mat-slide-toggle [(ngModel)]="switchStatus" (change)="cambioSwitch()"></mat-slide-toggle>
+      <h4>{{topic.name}}</h4>
     </div>
   </mat-card-content>
 </mat-card>
