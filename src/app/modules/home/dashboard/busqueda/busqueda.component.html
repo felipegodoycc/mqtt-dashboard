@@ -16,11 +16,13 @@
 
       <mat-grid-list [cols]="breakpoint" rowHeight="2:1" (window:resize)="onResize($event)">
         <mat-grid-tile>
-            <div>
+            <div style="width: 100%; height: 100%;">
               <div style="width: 100%; height: 100%;" *ngIf="loading">
                 <mat-spinner style="margin:10% auto;"></mat-spinner>
               </div>
-              <app-line-chart *ngIf="isData && !loading" [(data)]="graphData"></app-line-chart>
+              <div *ngIf="isData && !loading">
+                <app-line-chart [(data)]="graphData"></app-line-chart>
+              </div>
               <h3 *ngIf="!isData && !loading"> No hay informacion disponible </h3>
             </div>
         </mat-grid-tile>

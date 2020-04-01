@@ -27,7 +27,21 @@
   border-radius: 50%;
   box-shadow: 0 0 3px gray;
   border: 2px solid rgba(63, 81, 181, 1);
+  outline: none !important;
+  
 }
+
+*:focus {
+  outline: 0 !important;
+}
+
+.boton-switch:focus .boton-switch:active {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color:transparent;
+  border: none !important;
+}
+
 
 .container-switch {
   display: flex;

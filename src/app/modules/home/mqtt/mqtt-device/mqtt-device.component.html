@@ -14,7 +14,7 @@
       </mat-list>
     </div>    
     <div *ngIf="topic.type === 'switch' && authService.canControl()" class="container-switch">
-      <button (click)="cambioSwitch()" class="boton-switch">
+      <button type="button" (click)="cambioSwitch()" class="boton-switch">
         <mat-icon [ngClass]="{'boton-on': switchStatus}">offline_bolt</mat-icon>
       </button>  
       <h3 style="text-align: center;">{{topic.name}}</h3>
