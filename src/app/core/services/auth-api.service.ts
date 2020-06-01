@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { UsuarioAPI } from 'src/app/shared/models/usuarioAPI.model';
 import { map } from 'rxjs/operators';
 import { LoginDTO } from 'src/app/shared/interface/login.interface';
-import SimpleCrypto from 'simple-crypto-js';
+import { AES } from "crypto-js";
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +16,10 @@ export class AuthService {
   private token: string;
   user: UsuarioAPI;
   private helperJWT;
-  private simpleCrypto;
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
     this.helperJWT = new JwtHelperService();
-    this.simpleCrypto = new SimpleCrypto(environment.cryptoKey);
     this.leerToken();
     this.readUser();
     if (!this.isLogged()) { this.isUserLoggedIn.next(false); }
@@ -59,12 +57,12 @@ export class AuthService {
 
   private saveUser(user) {
     this.user = user;    
-    localStorage.setItem('user', this.simpleCrypto.encrypt(JSON.stringify(user)));
+    localStorage.setItem('user', encryptAES(JSON.stringify(user)));
   }
 
   private readUser() {
     const u = localStorage.getItem('user');
-    if (u) { this.user = JSON.parse(this.simpleCrypto.decrypt(u)); } else { this.user = null; }
+    if (u) { this.user = JSON.parse(decryptAES(JSON.parse(u))); } else { this.user = null; }
   }
 
   private guardarToken(token: string) {
@@ -110,4 +108,12 @@ export class AuthService {
   canView(): boolean {
     return this.user ? this.user.role.view : false;
   }
+}
+
+const encryptAES = (content) => {
+  return AES.encrypt(content, environment.cryptoKey).toString()
+}
+
+const decryptAES = (content) => {
+  return AES.decrypt(content, environment.cryptoKey).toString()
 }
