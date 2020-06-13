@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { UsuarioAPI } from 'src/app/shared/models/usuarioAPI.model';
 import { map } from 'rxjs/operators';
 import { LoginDTO } from 'src/app/shared/interface/login.interface';
-import { AES } from "crypto-js";
+import { AES, enc } from "crypto-js";
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +62,7 @@ export class AuthService {
 
   private readUser() {
     const u = localStorage.getItem('user');
-    if (u) { this.user = JSON.parse(decryptAES(JSON.parse(u))); } else { this.user = null; }
+    if (u) { this.user = JSON.parse(decryptAES(u)); } else { this.user = null; }
   }
 
   private guardarToken(token: string) {
@@ -111,9 +111,9 @@ export class AuthService {
 }
 
 const encryptAES = (content) => {
-  return AES.encrypt(content, environment.cryptoKey).toString()
+  return AES.encrypt(content, environment.cryptoKey).toString(); 
 }
 
 const decryptAES = (content) => {
-  return AES.decrypt(content, environment.cryptoKey).toString()
+  return AES.decrypt(content, environment.cryptoKey).toString(enc.Utf8);
 }
